@@ -111,3 +111,13 @@ document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
 });
+let cursor=document.getElementById('cursor');
+let img=document.getElementById('pimg');
+img.addEventListener('mousemove',()=>{
+  cursor.style.height='50px';
+  cursor.style.width='50px';
+})
+img.addEventListener('mouseleave',()=>{
+  cursor.style.height='25px';
+  cursor.style.width='25px';
+})
