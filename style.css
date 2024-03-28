@@ -31,7 +31,7 @@ body[theme='black']{
 }
 body[theme='black'] .section{
     /* background-color: #000; */
-    color: var(--orange-white);
+    color: var(--white);
 }
 body[theme='green']{
     background-color: var(--green);
@@ -93,3 +93,24 @@ body[theme='white'] .section{
     transform: translate(-50%,-50%);
     border-radius: 100%;
 } */
+
+
+  
+
+  
+  .btn::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: white;
+    z-index: -1;
+    transition: all .4s;
+  }
+  
+  .btn:hover::before {
+    width: 160%;
+  }

@@ -44,6 +44,8 @@ document.querySelectorAll('.section').forEach((sec)=>{
         trigger:sec,
         start:'top 50%',
         end:"bottom 50%",
+        ease:Power4,
+        scrub:2,
         onEnter:function(){
             document.body.setAttribute("theme",sec.dataset.color);
         },
@@ -53,25 +55,25 @@ document.querySelectorAll('.section').forEach((sec)=>{
     })
 })
 //about para
-var para="";
-document.querySelector('.paratext').textContent.split('').forEach((e)=>{
-    if(e==" ")para+=`<span>&nbsp;</span>`
-    para+=`<span >${e}</span>`
-})
-document.querySelector('.paratext').innerHTML=para;
-gsap.set(".paratext span",{opacity:.1})
-gsap.to(".paratext span",{
-    scrollTrigger:{
-        trigger:'.paratext',
-        start:"top center",
-        end:"bottom center",
-        markers:true,
-        scrub:2
-    },
-    opacity:1,
-    stagger:.01,
-    ease:Power4
-})
+// var para="";
+// document.querySelector('.paratext').textContent.split('').forEach((e)=>{
+//     if(e==" ")para+=`<span>&nbsp;</span>`
+//     para+=`<span >${e}</span>`
+// })
+// document.querySelector('.paratext').innerHTML=para;
+// gsap.set(".paratext span",{opacity:.1})
+// gsap.to(".paratext span",{
+//     scrollTrigger:{
+//         trigger:'.paratext',
+//         start:"top center",
+//         end:"bottom center",
+//         // markers:true,
+//         scrub:2
+//     },
+//     opacity:1,
+//     stagger:.01,
+//     ease:Power4
+// })
 // slide projects
 gsap.to(".slide",{
     scrollTrigger:{
@@ -85,39 +87,55 @@ gsap.to(".slide",{
 })
 
 //gsap cursor animation
-let posX = 0,
-  posY = 0;
+// let posX = 0,
+//   posY = 0;
 
-let mouseX = 0,
-  mouseY = 0;
+// let mouseX = 0,
+//   mouseY = 0;
 
-gsap.to(".cursor", {
-  duration: 0.018,
-  repeat: -1,
-  onRepeat: function () {
-    posX += (mouseX - posX) / 8;
-    posY += (mouseY - posY) / 8;
+// gsap.to(".cursor", {
+//   duration: 0.018,
+//   repeat: -1,
+//   onRepeat: function () {
+//     posX += (mouseX - posX) / 8;
+//     posY += (mouseY - posY) / 8;
 
-    gsap.set(".cursor", {
-      css: {
-        left: posX - 1,
-        top: posY - 2
-      }
-    });
-  }
-});
+//     gsap.set(".cursor", {
+//       css: {
+//         left: posX - 1,
+//         top: posY - 2
+//       }
+//     });
+//   }
+// });
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-let cursor=document.getElementById('cursor');
-let img=document.getElementById('pimg');
-img.addEventListener('mousemove',()=>{
-  cursor.style.height='50px';
-  cursor.style.width='50px';
-})
-img.addEventListener('mouseleave',()=>{
-  cursor.style.height='25px';
-  cursor.style.width='25px';
+// document.addEventListener("mousemove", (e) => {
+//   mouseX = e.clientX;
+//   mouseY = e.clientY;
+// });
+
+
+var listitems=document.querySelectorAll('.list');
+listitems.forEach((el)=>{
+    el.addEventListener('mouseenter',()=>{
+        // el.childNodes[1].style.opacity=1;
+        gsap.to(el.childNodes[1],{
+            opacity:0.5,
+            scale:1
+        })
+    })
+    el.addEventListener('mouseleave',()=>{
+        // el.childNodes[1].style.opacity=0;
+        gsap.to(el.childNodes[1],{
+            opacity:0,
+            scale:0
+        })
+    })
+    el.addEventListener('mousemove',(dets)=>{
+        // console.log(el.getBoundingClientRect())
+        gsap.to(el.childNodes[1],{
+            x:dets.x-el.getBoundingClientRect().x-20,
+            y:dets.y-el.getBoundingClientRect().y-20,
+        })
+    })
 })
