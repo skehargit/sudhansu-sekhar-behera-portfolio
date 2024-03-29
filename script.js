@@ -1,3 +1,4 @@
+
 // // eye animation on hover
 // let eyesbox=document.getElementById('eyes');
 // let eyes = document.querySelectorAll('.eye');
@@ -37,6 +38,18 @@
 // tl.to('.hero',{
 //     '--clip':'100%'
 // })
+
+
+//loding animation
+var tl=gsap.timeline();
+tl.from('.landingPage h1,.landingPage img',{
+    opacity:0,
+    duration:0.4,
+    stagger:0.4,
+})
+tl.from('.landingPage hr',{
+    width:'0%',
+})
 
 ///color change theme
 document.querySelectorAll('.section').forEach((sec)=>{
@@ -80,9 +93,10 @@ gsap.to(".slide",{
         trigger:'.real',
         start:"top top",
         end:"bottom bttom",
-        scrub:1
+        pin:true,
+        scrub:.5
     },
-    xPercent:-200,
+    xPercent:-300,
     ease:Power4
 })
 
@@ -139,3 +153,5 @@ listitems.forEach((el)=>{
         })
     })
 })
+
+
