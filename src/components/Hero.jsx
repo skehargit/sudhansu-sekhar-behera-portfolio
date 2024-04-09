@@ -39,10 +39,10 @@ function Hero() {
           </div> */}
       <div className="absolute  text-white w-full flex items-center justify-center flex-col h-full">
         <div>
-          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none flex relative">
+          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none flex relative items-center">
             Hello,
-            <div className="profile scale-0 border p-3 absolute -right-4 rounded-full backdrop-blur border-zinc-100/10 flex items-center justify-center">
-              <div className="border p-3 h-[100%] w-[100%] absolute rounded-full backdrop-blur border-zinc-100/50 animate-ping">
+            <div className="profile scale-0 border w-[50px] h-[50px]  rounded-full backdrop-blur border-zinc-100/10 flex items-center justify-center">
+              <div className="border w-[50px] h-[50px]  absolute rounded-full backdrop-blur border-zinc-100/50 animate-ping">
 
               </div>
               <div className="w-[40px] h-[40px]   rounded-full overflow-hidden">
@@ -56,18 +56,12 @@ function Hero() {
           </h1>
           <hr className="headingHr w-[0%]" />
         </div>
-        <div>
-          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none">
-            I'm sudhansu
+        {["I'm sudhansu","Learing mern"].map((text,index)=><div key={index}>
+          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none flex relative">
+            {text}
           </h1>
           <hr className="headingHr w-[0%]" />
-        </div>
-        <div>
-          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none">
-            Learing mern
-          </h1>
-          <hr className="headingHr w-[0%]" />
-        </div>
+        </div>)}
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="text">
             {'"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dicta"'
