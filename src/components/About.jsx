@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Btn from "./smallComponents/Btn";
 import EducationDate from "./smallComponents/EducationDate";
 import CourseAndCollegeName from "./smallComponents/CourseAndCollegeName";
+import Skills from "./smallComponents/Skills";
 function About() {
   return (
     <div className="w-full bg-black relative flex ">
@@ -113,6 +114,7 @@ function About() {
             )
           )}
         </div>
+        <Skills/>
       </div>
     </div>
   );
