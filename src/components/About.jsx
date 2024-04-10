@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
-import Btn from "./Btn";
+import Btn from "./smallComponents/Btn";
+import EducationDate from "./smallComponents/EducationDate";
+import CourseAndCollegeName from "./smallComponents/CourseAndCollegeName";
 function About() {
   return (
     <div className="w-full bg-black relative flex ">
@@ -26,14 +28,17 @@ function About() {
                 </div>
               </div>
               <div className="flex justify-between ">
-                <div>
-                  <span className="font-semibold text-white">Age:</span>
-                  <span className=" text-green-500"> 23</span>
-                </div>
-                <div>
-                  <span className="font-semibold text-white">From:</span>
-                  <span className=" text-green-500"> Odisha(india)</span>
-                </div>
+                {[
+                  ["age:", " 23"],
+                  ["from:", " odisha(india)"],
+                ].map((el, index) => (
+                  <div key={index}>
+                    <span className="font-semibold text-white capitalize">
+                      {el[0]}
+                    </span>
+                    <span className=" text-green-500">{el[1]}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -51,49 +56,62 @@ function About() {
           <Btn name="resume" />
         </div>
         <div className="Education flex flex-col gap-3 items-center">
-          <h2 className=" text-2xl font-semibold py-2 uppercase">
-            Education 
-          </h2>
-          <div className="w-full px-5 flex items-center justify-center">
-            <div className=" flex items-center w-[70%]  relative">
-              <div className="flex flex-col w-1/4   items-center py-2 relative z-[2]">
-                <span className="text-5xl font-semibold text-zinc-700">2024</span>  
-                <span className="text-zinc-600 font-semibold">--</span>
+          <h2 className=" text-2xl font-semibold py-2 uppercase">Education</h2>
+          {[
+            {
+              date: "2024",
+              fullDate: "---",
+              collegeName: "Code Help, Youtube, Udemy, online",
+              courseName: "MERN Stack development, Web Designing",
+            },
+
+            {
+              date: "2025",
+              fullDate: "2022-2025",
+              collegeName:
+                "Vignan Institute Of Technology And Management, Berhampur",
+              courseName: "Btech in Mechanical Engineering",
+            },
+            {
+              date: "2022",
+              fullDate: "2019-2022",
+              collegeName:
+                "Aum Sai Institute Of Technical Education, Berhampur",
+              courseName: "Diploma in Mechanical Engineering",
+            },
+          ].map((obj, index) =>
+            index%2 != 0 ? (
+              <div
+                key={index}
+                className="w-full px-5 flex items-center justify-center"
+              >
+                <div className="flex items-center w-[70%]  relative">
+                  <CourseAndCollegeName
+                    collegeName={obj.collegeName}
+                    courseName={obj.courseName}
+                    textPosition="start"
+                  />
+                  <EducationDate date={obj.date} fullDate={obj.fullDate} />
+                  <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] left-0"></div>
+                </div>
               </div>
-              <div className="w-3/4 flex flex-col text-end px-5 relative z-[2]">
-                <p className="">MERN Stack development, Web Designing</p>
-                <p className="text-sm text-zinc-400">Code Help, Youtube, Udemy, online</p>
+            ) : (
+              <div
+                key={index}
+                className="w-full px-5 flex items-center justify-center"
+              >
+                <div className="flex items-center w-[70%]  relative">
+                  <EducationDate date={obj.date} fullDate={obj.fullDate} />
+                  <CourseAndCollegeName
+                    collegeName={obj.collegeName}
+                    courseName={obj.courseName}
+                    textPosition="end"
+                  />
+                  <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
+                </div>
               </div>
-              <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
-            </div>
-          </div>
-          <div className="w-full px-5 flex items-center justify-center">
-            <div className=" flex items-center w-[70%]  relative">
-              <div className="w-3/4 flex flex-col text-start px-5 relative z-[2]">
-                <p>Btech in Mechanical Engineering</p>
-                <p className="text-sm text-zinc-400">Vignan Institute Of Technology And Management, Berhampur</p>
-              </div>
-              <div className="flex flex-col w-1/4   items-center py-2 relative z-[2]">
-                <span className="text-5xl font-semibold text-zinc-700">2025</span>  
-                <span className="text-zinc-600 font-semibold">2022-2025</span>
-              </div>
-              
-              <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] left-0"></div>
-            </div>
-          </div>
-          <div className="w-full px-5 flex items-center justify-center">
-            <div className=" flex items-center w-[70%]  relative">
-              <div className="flex flex-col w-1/4   items-center py-2 relative z-[2]">
-                <span className="text-5xl font-semibold text-zinc-700">2022</span>  
-                <span className="text-zinc-600 font-semibold">2019-2022</span>
-              </div>
-              <div className="w-1/2 relative z-[2]">
-                <p>Diploma in Mechanical Engineering</p>
-                <p className="text-sm text-zinc-400">Aum Sai Institute Of Technical Education, Berhampur</p>
-              </div>
-              <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
-            </div>
-          </div>
+            )
+          )}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import Btn from "./Btn";
+import Btn from "./smallComponents/Btn";
 gsap.registerPlugin(ScrollTrigger);
 function Hero() {
   const tl = useRef();

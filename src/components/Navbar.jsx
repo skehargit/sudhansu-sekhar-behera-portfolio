@@ -1,6 +1,5 @@
 import React from "react";
-import Btn from "./Btn";
-
+import Btn from "./smallComponents/Btn";
 function Navbar() {
   return (
     <div className="w-full h-fit bg-black box-border px-10">
