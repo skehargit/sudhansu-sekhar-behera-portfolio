@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { BsStars } from "react-icons/bs";
 import { MdStars } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
@@ -11,13 +11,26 @@ import Btn from "./smallComponents/Btn";
 gsap.registerPlugin(ScrollTrigger);
 function Hero() {
   const tl = useRef();
+  useEffect(()=>{
+    gsap.to(".headingh1", {
+      scrollTrigger: {
+        trigger: ".heroPage",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        // markers:true,
+      },
+      scale:3,
+      opacity:0,
+    });
+  })
   useGSAP(() => {
     tl.current = gsap
       .timeline()
-      .to("h1", {
-        scale: 1,
-        stagger: 0.2,
-      })
+      // .to("h1", {
+      //   scale: 1,
+      //   stagger: 0.2,
+      // })
       .to(".headingHr", {
         width: "100%",
         stagger: 0.4,
@@ -39,7 +52,7 @@ function Hero() {
           </div> */}
       <div className="absolute  text-white w-full flex items-center justify-center flex-col h-full">
         <div>
-          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none flex relative items-center">
+          <h1 className="headingh1 scale-1 text-[10vw]  max-[600px]:text-[15vw] uppercase leading-none flex relative items-center">
             Hello,
             <div className="profile scale-0 border w-[50px] h-[50px]  rounded-full backdrop-blur border-zinc-100/10 flex items-center justify-center">
               <div className="border w-[50px] h-[50px]  absolute rounded-full backdrop-blur border-zinc-100/50 animate-ping">
@@ -57,7 +70,7 @@ function Hero() {
           <hr className="headingHr w-[0%]" />
         </div>
         {["I'm sudhansu","Learing mern"].map((text,index)=><div key={index}>
-          <h1 className="text-[10vw] scale-0 max-[600px]:text-[15vw] uppercase leading-none flex relative">
+          <h1 className="headingh1 scale-1 text-[10vw]  max-[600px]:text-[15vw] uppercase leading-none flex relative">
             {text}
           </h1>
           <hr className="headingHr w-[0%]" />
@@ -66,8 +79,8 @@ function Hero() {
           <p className="text">
             {'"Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, dicta"'
               .split("")
-              .map((letter) => (
-                <span className="opacity-0">{letter}</span>
+              .map((letter,index) => (
+                <span key={index} className="opacity-0">{letter}</span>
               ))}
           </p>
           <Btn name="resume" />

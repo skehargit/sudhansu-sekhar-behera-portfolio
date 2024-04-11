@@ -1,13 +1,74 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Btn from "./smallComponents/Btn";
 import EducationDate from "./smallComponents/EducationDate";
 import CourseAndCollegeName from "./smallComponents/CourseAndCollegeName";
 import Skills from "./smallComponents/Skills";
+import gsap from "https://esm.sh/gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+import { useGSAP } from "@gsap/react";
 function About() {
+  
+  const tl = useRef();
+  useEffect(()=>{
+    gsap.to(".profilebox", {
+      scrollTrigger: {
+        trigger: ".aboutsection",
+        start: "top bottom",
+        end: "bottom 50%",
+        scrub: 0.5,
+        // markers:true,
+      },
+      x: '0',
+      opacity:1,
+    });
+    gsap.to(".aboutBox", {
+      scrollTrigger: {
+        trigger: ".aboutsection",
+        start: "top 80%",
+        end: "bottom 60%",
+        scrub: true,
+        // markers:true,
+      },
+      scale: 1,
+      opacity:1,
+    });
+    gsap.to(".edbox", {
+      scrollTrigger: {
+        trigger: ".Education",
+        start: "top 80%",
+        end: "bottom 70%",
+        scrub: 0.5,
+        // markers:true,
+      },
+      scale: 1,
+      opacity:1,
+    });
+    
+  })
+  useGSAP(() => {
+    tl.current = gsap
+      .timeline()
+      // .to(".aboutBox", {
+      //   scale: 1,
+      //   stagger: 0.2,
+      //   scrollTrigger: {
+      //     trigger: ".aboutBox",
+      //     pin: true, // pin the trigger element while active
+      //     start: "top top", // when the top of the trigger hits the top of the viewport
+      //     end: "bottom bottom", // end after scrolling 500px beyond the start
+      //     scrub: 1,
+      //     marker:true,
+      //   }
+      // })
+    // gsap.to('.aboutBox',{
+      
+    // })
+  });
   return (
-    <div className="w-full bg-black relative flex ">
+    <div className="aboutsection w-full bg-black relative flex ">
       <div className=" w-1/2 sticky top-0 p-5 h-fit flex justify-center">
-        <div className=" w-[300px] h-fit relative flex">
+        <div className="profilebox -translate-x-[200%] w-[300px]  h-fit relative flex">
           <img
             className="w-full"
             src="https://i.pinimg.com/originals/36/ea/42/36ea420bda238ecd1818b0f734dbb6f4.webp"
@@ -46,7 +107,7 @@ function About() {
         </div>
       </div>
       <div className=" w-1/2 text-white">
-        <div className="mt-28">
+        <div className="aboutBox scale-[0] opacity-0 mt-[50vh]">
           <h2 className="text-2xl font-semibold py-2">ABOUT :</h2>
           <p className="text-lg py-2">
             I'm passionate about designing websites and continuously learning
@@ -84,7 +145,7 @@ function About() {
             index%2 != 0 ? (
               <div
                 key={index}
-                className="w-full px-5 flex items-center justify-center"
+                className="edbox scale-[0] opacity-0 w-full px-5 flex items-center justify-center"
               >
                 <div className="flex items-center w-[70%]  relative">
                   <CourseAndCollegeName
@@ -99,7 +160,7 @@ function About() {
             ) : (
               <div
                 key={index}
-                className="w-full px-5 flex items-center justify-center"
+                className="edbox scale-[0] opacity-0  w-full px-5 flex items-center justify-center"
               >
                 <div className="flex items-center w-[70%]  relative">
                   <EducationDate date={obj.date} fullDate={obj.fullDate} />
