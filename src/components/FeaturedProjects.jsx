@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function FeaturedProjects() {
   const [projects, setProjects] = useState();
+  const [bg, setBg] = useState("8");
 
   const getAllProjects = async () => {
     try {
@@ -23,8 +24,8 @@ function FeaturedProjects() {
       console.log(error);
     }
   };
-  useEffect(()=>{
-    for(let i=0;i<=3;i++){
+  useEffect(() => {
+    for (let i = 0; i <= 3; i++) {
       gsap.to(`.projectsBox${i}`, {
         scrollTrigger: {
           trigger: `.projectsBox${i}`,
@@ -33,13 +34,11 @@ function FeaturedProjects() {
           scrub: 1,
           // markers:true,
         },
-        scale:1,
-        opacity:1,
+        scale: 1,
+        opacity: 1,
       });
     }
-    
-    
-});
+  });
   // useEffect(() => {
   //   // getAllProjects();
   // }, []);
@@ -90,37 +89,29 @@ function FeaturedProjects() {
     },
   ];
   return (
-    <div className="projectContainer h-[450vh] w-full bg-black relative">
-      {pj.map((obj, index) => (
-        <div
-          key={index}
-          className={` projectsBox${index} scale-0 opacity-0 flex h-[100vh] items-center  justify-center sticky top-0`}
-        >
-          <div className=" min-w-[300px] w-[40vw] h-fit relative">
-            <h1 className="projectHeading tracking-wide font-semibold  text-white text-5xl uppercase text-end pb-2 bg-black">
+    <div
+      className={`projectContainer h-[100vh]  w-full bg-black relative overflow-hidden`}
+    >
+      <div className="h-full w-[100vw] flex items-center justify-center flex-col">
+        {pj.map((obj, index) => (
+          <div className="relative z-[2] border-b border-white/20 w-full h-[25%] overflow-hidden flex items-center justify-center gap-5">
+            <h3 className="projectHeading leading-none text-white text-9xl">
               {obj.title}
-            </h1>
-            <div className="group relative ">
+            </h3>
+            <div className="w-[250px] ">
               <img className=" relative z-[1] w-full" src={obj.image} alt="" />
-              <div className="absolute z-[2] bottom-0 w-full flex flex-col items-center justify-center text-white bg-gradient-to-t from-black ">
-                <div></div>
-                <p>{obj.description}</p>
-              </div>
-            </div>
-            <div className="text-white w-full grid grid-cols-2 mt-2">
-              <div className="flex gap-2">
-                <button className="py-2 w-1/2 bg-zinc-900 rounded-full capitalize">
-                  git repo
+              <div className="text-white flex w-full">
+                <button className="bg-zinc-900 border border-white/20 w-1/2">
+                  GitRepo
                 </button>
-                <button className="py-2 bg-zinc-900 w-1/2 rounded-full capitalize">
-                  live link
+                <button className="bg-zinc-900 border border-white/20 w-1/2">
+                  LiveLink
                 </button>
               </div>
-              <div></div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
