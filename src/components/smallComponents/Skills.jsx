@@ -27,7 +27,7 @@ function Skills() {
   })
   return (
     <div className='py-5'>
-        <div className='skbox origin-right bg-zinc-900 w-[0] py-2 flex gap-3 text-5xl justify-center items-center rounded-full relative'>
+        <div className='skbox origin-right bg-zinc-900 w-[0] py-2 flex gap-3 text-5xl max-[600px]:text-2xl justify-center items-center rounded-full relative'>
         <MdHtml />
         <MdCss />
         <BiLogoTailwindCss />

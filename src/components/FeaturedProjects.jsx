@@ -26,10 +26,10 @@ function FeaturedProjects() {
   };
   useEffect(() => {
     for (let i = 0; i <= 3; i++) {
-      gsap.to(`.projectsBox${i}`, {
+      gsap.to(`.projectBox${i}`, {
         scrollTrigger: {
-          trigger: `.projectsBox${i}`,
-          start: "top center",
+          trigger: `.projectBox${i}`,
+          start: "top 80%",
           end: "bottom center",
           scrub: 1,
           // markers:true,
@@ -90,12 +90,12 @@ function FeaturedProjects() {
   ];
   return (
     <div
-      className={`projectContainer h-[100vh]  w-full bg-black relative overflow-hidden`}
+      className={`projectContainer   w-full bg-black relative overflow-hidden`}
     >
-      <div className="h-full w-[100vw] flex items-center justify-center flex-col">
+      <div className="w-full flex items-center justify-center flex-col">
         {pj.map((obj, index) => (
-          <div className="relative z-[2] border-b border-white/20 w-full h-[25%] overflow-hidden flex items-center justify-center gap-5">
-            <h3 className="projectHeading leading-none text-white text-9xl">
+          <div key={index} className={`projectBox${index} opacity-0 scale-[0.5] relative z-[2] border-b border-white/20 w-full h-fit overflow-hidden flex max-[1024px]:flex-col items-center justify-center gap-5 py-5`}>
+            <h3  className="projectHeading leading-none text-white text-9xl max-[600px]:text-5xl">
               {obj.title}
             </h3>
             <div className="w-[250px] ">

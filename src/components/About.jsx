@@ -59,14 +59,14 @@ function About() {
                 <h2 className="text-2xl font-semibold text-white">
                   Sudhansu Sekhar Behera
                 </h2>
-                <div className="flex justify-between items-center">
+                {/* <div className="flex justify-between items-center">
                   <h3 className="text-md font-semibold text-green-500">
                     #Web Designer
                   </h3>
                   <h3 className="text-md font-semibold text-green-500">
                     #MERN Developer
                   </h3>
-                </div>
+                </div> */}
               </div>
               <div className="flex justify-between ">
                 {[
@@ -124,9 +124,9 @@ function About() {
             index%2 != 0 ? (
               <div
                 key={index}
-                className="edbox scale-[0] opacity-0 w-full px-5 flex items-center justify-center"
+                className="edbox scale-[0] opacity-0 w-full px-5 max-[600px]:px-0 flex items-center justify-center"
               >
-                <div className="flex items-center w-[70%]  relative">
+                <div className="flex items-center w-[95%]  relative">
                   <CourseAndCollegeName
                     collegeName={obj.collegeName}
                     courseName={obj.courseName}
@@ -139,9 +139,9 @@ function About() {
             ) : (
               <div
                 key={index}
-                className="edbox scale-[0] opacity-0  w-full px-5 flex items-center justify-center"
+                className="edbox scale-[0] opacity-0  w-full px-5 max-[600px]:px-0 flex items-center justify-center"
               >
-                <div className="flex items-center w-[70%]  relative">
+                <div className="flex items-center w-[95%]  relative">
                   <EducationDate date={obj.date} fullDate={obj.fullDate} />
                   <CourseAndCollegeName
                     collegeName={obj.collegeName}
