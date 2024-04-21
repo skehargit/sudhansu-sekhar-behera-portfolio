@@ -7,97 +7,68 @@ import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+import { PiBracketsCurly } from "react-icons/pi";
+import { HiArrowTrendingDown } from "react-icons/hi2";
 function About() {
-  useEffect(()=>{
-    gsap.to(".profilebox", {
+  useEffect(() => {
+    gsap.to(".aboutPara span", {
       scrollTrigger: {
-        trigger: ".aboutsection",
-        start: "top bottom",
-        end: "bottom 50%",
-        scrub: 0.5,
-        // markers:true,
-      },
-      x: '0',
-      opacity:1,
-    });
-    gsap.to(".aboutBox", {
-      scrollTrigger: {
-        trigger: ".aboutsection",
-        start: "top 80%",
-        end: "bottom 60%",
+        trigger: ".aboutPara",
+        start: "top 90%",
+        end: "bottom 40%",
         scrub: true,
-        // markers:true,
+        // markers: true,
       },
-      scale: 1,
-      opacity:1,
+      opacity: 1,
+      stagger: 0.01,
     });
-    gsap.to(".edbox", {
-      scrollTrigger: {
-        trigger: ".Education",
-        start: "top 80%",
-        end: "bottom 70%",
-        scrub: 0.5,
-        // markers:true,
-      },
-      scale: 1,
-      opacity:1,
-    });
-    
   });
   return (
     <div className="aboutsection w-full bg-black relative flex max-[1200px]:flex-col">
-      <div className=" w-1/2 max-[1200px]:w-full sticky  top-0 p-5 h-fit flex justify-center flex  overflow-x-hidden relative z-[1] ">
-        <div className="profilebox  -translate-x-[200%] max-[1200px]:-translate-x-[0] w-[300px]  h-fit relative flex">
-          <img
-            className="w-full"
-            src="https://i.pinimg.com/originals/36/ea/42/36ea420bda238ecd1818b0f734dbb6f4.webp"
-            alt=""
-          />
-          <div className="w-full absolute h-full bg-gradient-to-t from-black to-50%">
-            <div className="absolute bottom-0 p-3">
-              <div>
-                <h2 className="text-2xl font-semibold text-white">
-                  Sudhansu Sekhar Behera
-                </h2>
-                {/* <div className="flex justify-between items-center">
-                  <h3 className="text-md font-semibold text-green-500">
-                    #Web Designer
-                  </h3>
-                  <h3 className="text-md font-semibold text-green-500">
-                    #MERN Developer
-                  </h3>
-                </div> */}
+      <div className=" w-full text-white relative z-[2] border-t  px-5 py-10 overflow-hidden">
+        <h2 className="text-2xl font-semibold py-5 flex items-center ">
+          ABOUT{" "}
+          <span>
+            <HiArrowTrendingDown />
+          </span>
+        </h2>
+
+        <div className="grid grid-cols-2 max-[1024px]:grid-cols-1  w-full">
+          <div className="">
+            <div className="w-[300px] max-[500px]:w-[250px] flex relative">
+              <div className="text-8xl translate-x-[50px]">
+                <PiBracketsCurly />
               </div>
-              <div className="flex justify-between ">
-                {[
-                  ["age:", " 23"],
-                  ["from:", " odisha(india)"],
-                ].map((el, index) => (
-                  <div key={index}>
-                    <span className="font-semibold text-white capitalize">
-                      {el[0]}
-                    </span>
-                    <span className=" text-green-500">{el[1]}</span>
-                  </div>
-                ))}
+              <img
+                src="https://i.pinimg.com/originals/36/ea/42/36ea420bda238ecd1818b0f734dbb6f4.webp"
+                alt=""
+              />
+              <div className="text-8xl flex items-end -translate-x-[50px]">
+                <PiBracketsCurly />
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className=" w-1/2 max-[1200px]:w-full text-white max-[1200px]:bg-black relative z-[2] overflow-hidden">
-        <div className="aboutBox scale-[0] opacity-0 mt-[50vh] max-[1200px]:mt-0">
-          <h2 className="text-2xl font-semibold py-2">ABOUT :</h2>
-          <p className="text-lg py-2">
-            I'm passionate about designing websites and continuously learning
+          <div className="grid ">
+            <p className="aboutPara py-2">
+              {`I'm passionate about designing websites and continuously learning
             web development online. I can craft responsive and dynamic designs.
-            Currently seeking opportunities to grow and contribute my skills.
-          </p>
-
-          <Btn name="resume" />
+            Currently seeking opportunities to grow and contribute my skills.`
+                .split("")
+                .map((letter, index) => (
+                  <span key={index} className="opacity-0">
+                    {letter}
+                  </span>
+                ))}
+            </p>
+            <button className=" border relative w-20 h-20 m-5  rounded-full flex items-center justify-center p-2 ">
+              <div className="absolute">
+                <div className="p-2 uppercase">resume</div>
+              </div>
+              <div className="move border h-10 w-10 scale-[2] rounded-full  flex items-center justify-center"></div>
+            </button>
+          </div>
         </div>
-        <div className="Education flex flex-col gap-3 items-center">
-          <h2 className=" text-2xl font-semibold py-2 uppercase">Education</h2>
+        <div className="grid grid-cols-3 max-[1400px]:grid-cols-1 max-[1400px]:gap-5 py-7">
           {[
             {
               date: "2024",
@@ -120,41 +91,24 @@ function About() {
                 "Aum Sai Institute Of Technical Education, Berhampur",
               courseName: "Diploma in Mechanical Engineering",
             },
-          ].map((obj, index) =>
-            index%2 != 0 ? (
-              <div
-                key={index}
-                className="edbox scale-[0] opacity-0 w-full px-5 max-[600px]:px-0 flex items-center justify-center"
-              >
-                <div className="flex items-center w-[95%]  relative">
-                  <CourseAndCollegeName
-                    collegeName={obj.collegeName}
-                    courseName={obj.courseName}
-                    textPosition="start"
-                  />
-                  <EducationDate date={obj.date} fullDate={obj.fullDate} />
-                  <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] left-0"></div>
-                </div>
+          ].map((obj, index) => (
+            <div
+              key={index}
+              className="w-full px-5 max-[600px]:px-0 flex items-center justify-center"
+            >
+              <div className="flex items-center w-full  relative">
+                <EducationDate date={obj.date} fullDate={obj.fullDate} />
+                <CourseAndCollegeName
+                  collegeName={obj.collegeName}
+                  courseName={obj.courseName}
+                  textPosition="end"
+                />
+                <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
               </div>
-            ) : (
-              <div
-                key={index}
-                className="edbox scale-[0] opacity-0  w-full px-5 max-[600px]:px-0 flex items-center justify-center"
-              >
-                <div className="flex items-center w-[95%]  relative">
-                  <EducationDate date={obj.date} fullDate={obj.fullDate} />
-                  <CourseAndCollegeName
-                    collegeName={obj.collegeName}
-                    courseName={obj.courseName}
-                    textPosition="end"
-                  />
-                  <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
-                </div>
-              </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
-        <Skills/>
+        <Skills />
       </div>
     </div>
   );

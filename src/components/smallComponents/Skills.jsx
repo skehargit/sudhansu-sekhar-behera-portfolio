@@ -11,6 +11,7 @@ import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
 function Skills() {
   useEffect(()=>{
     gsap.to(".skbox", {
@@ -26,7 +27,7 @@ function Skills() {
     });
   })
   return (
-    <div className='py-5'>
+    <div className=''>
         <div className='skbox origin-right bg-zinc-900 w-[0] py-2 flex gap-3 text-5xl max-[600px]:text-2xl justify-center items-center rounded-full relative'>
         <MdHtml />
         <MdCss />

@@ -25,6 +25,7 @@ function FeaturedProjects() {
     }
   };
   useEffect(() => {
+    
     for (let i = 0; i <= 3; i++) {
       gsap.to(`.projectBox${i}`, {
         scrollTrigger: {
@@ -34,10 +35,25 @@ function FeaturedProjects() {
           scrub: 1,
           // markers:true,
         },
+        
         scale: 1,
         opacity: 1,
       });
+      gsap.to(`.projectChar${i}`,{
+        scrollTrigger:{
+          trigger:`.projectBox${i}`,
+          start: "top 80%",
+          end: "bottom 60%",
+          scrub:1,
+          // markers:true
+        },
+        y:0,
+        stagger: 0.1,
+      })
+      
+      
     }
+    
   });
   // useEffect(() => {
   //   // getAllProjects();
@@ -95,8 +111,8 @@ function FeaturedProjects() {
       <div className="w-full flex items-center justify-center flex-col">
         {pj.map((obj, index) => (
           <div key={index} className={`projectBox${index} opacity-0 scale-[0.5] relative z-[2] border-b border-white/20 w-full h-fit overflow-hidden flex max-[1024px]:flex-col items-center justify-center gap-5 py-5`}>
-            <h3  className="projectHeading leading-none text-white text-9xl max-[600px]:text-5xl">
-              {obj.title}
+            <h3  className="projectHeading leading-none text-white text-9xl max-[600px]:text-5xl overflow-hidden">
+              {obj.title.split('').map(char=><span key={char+index} className={`projectChar${index} inline-block translate-y-[100%]`}>{char}</span>)}
             </h3>
             <div className="w-[250px] ">
               <img className=" relative z-[1] w-full" src={obj.image} alt="" />
