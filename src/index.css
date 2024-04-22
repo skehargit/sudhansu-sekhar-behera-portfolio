@@ -11,9 +11,19 @@
     .responsiveFontSize{
         font-size: max(3.5rem,min(10vw + 1rem,18rem));
     }
-    .aboutPara{
+    .aboutPara,.projectPara{
         font-size: max(1rem,min(3vw + 1rem,2rem));
     }
+    /* .linersAnimation{
+        background-image: repeating-linear-gradient(289deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),repeating-linear-gradient(593deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),repeating-linear-gradient(271deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),linear-gradient(331deg, rgb(14, 172, 245),rgb(129, 60, 165));
+        mix-blend-mode: lighten;
+    } */
+    .circleLine{
+        background-image: repeating-linear-gradient(135deg, rgba(172, 176, 216,0.08) 0px, rgba(172, 176, 216,0.08) 1px,transparent 1px, transparent 9px),repeating-linear-gradient(45deg, rgba(172, 176, 216,0.08) 0px, rgba(172, 176, 216,0.08) 1px,transparent 1px, transparent 9px),linear-gradient(90deg, rgb(5,26,155),rgb(24,62,255));
+    }
+    /* .aboutsection{
+        background-image: repeating-linear-gradient(48deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),repeating-linear-gradient(352deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),repeating-linear-gradient(30deg, rgb(0,0,0) 0px, rgb(0,0,0) 27px,transparent 27px, transparent 30px),linear-gradient(90deg, rgb(14, 172, 245),rgb(129, 60, 165));
+    } */
 
 
     /* glitch effect */

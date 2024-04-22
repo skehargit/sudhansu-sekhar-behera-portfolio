@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { GiDuration } from "react-icons/gi";
 gsap.registerPlugin(ScrollTrigger);
 
 function FeaturedProjects() {
@@ -25,35 +26,19 @@ function FeaturedProjects() {
     }
   };
   useEffect(() => {
-    
-    for (let i = 0; i <= 3; i++) {
-      gsap.to(`.projectBox${i}`, {
+    for (let i = 0; i <= 2; i++) {
+      gsap.to(`.projectChar${i}`, {
         scrollTrigger: {
-          trigger: `.projectBox${i}`,
-          start: "top 80%",
-          end: "bottom center",
-          scrub: 1,
-          // markers:true,
-        },
-        
-        scale: 1,
-        opacity: 1,
-      });
-      gsap.to(`.projectChar${i}`,{
-        scrollTrigger:{
-          trigger:`.projectBox${i}`,
+          trigger: `.projectHeading${i}`,
           start: "top 80%",
           end: "bottom 60%",
-          scrub:1,
+          scrub: 1,
           // markers:true
         },
-        y:0,
+        y: 0,
         stagger: 0.1,
-      })
-      
-      
+      });
     }
-    
   });
   // useEffect(() => {
   //   // getAllProjects();
@@ -92,42 +77,47 @@ function FeaturedProjects() {
       type: "normal",
       description: "A small music player project with responsive design.📱",
     },
-    {
-      id: 4,
-      title: "CatPhotos",
-      image:
-        "https://i.pinimg.com/originals/ee/c5/be/eec5bed12807e1d385d3c695c04f5db8.jpg",
-      link1: "https://skehargit.github.io/catphotos/",
-      link2: "https://github.com/skehargit/catphotos",
-      type: "normal",
-      description:
-        "created a web page using HTML and CSS, following lessons from FreeCodeCamp.",
-    },
   ];
   return (
-    <div
-      className={`projectContainer   w-full bg-black relative overflow-hidden`}
-    >
-      <div className="w-full flex items-center justify-center flex-col">
-        {pj.map((obj, index) => (
-          <div key={index} className={`projectBox${index} opacity-0 scale-[0.5] relative z-[2] border-b border-white/20 w-full h-fit overflow-hidden flex max-[1024px]:flex-col items-center justify-center gap-5 py-5`}>
-            <h3  className="projectHeading leading-none text-white text-9xl max-[600px]:text-5xl overflow-hidden">
-              {obj.title.split('').map(char=><span key={char+index} className={`projectChar${index} inline-block translate-y-[100%]`}>{char}</span>)}
+    <div className="featuredProjectsSection w-full bg-black flex items-center justify-center flex-col relative">
+      {pj.map((obj, index) => (
+        <div
+          key={`featuredProjectsSection${index}project`}
+          className={`group projectBox${index}  border sticky top-0
+          } bg-black z-[2] border-b border-white/20 w-full h-fit overflow-hidden flex flex-col items-center justify-center gap-5  py-5 px-10`}
+        >
+          <div className="flex justify-between items-center w-full">
+            <h3
+              className={`projectHeading${index} anton leading-none text-[#d7d7cf] text-9xl max-[600px]:text-2xl overflow-hidden`}
+            >
+              {obj.title.split("").map((char, idx) => (
+                <span
+                  key={`featuredProjectsSectionProjectHeading${index}chars${idx}`}
+                  className={`projectChar${index} inline-block translate-y-[100%]`}
+                >
+                  {char}
+                </span>
+              ))}
             </h3>
-            <div className="w-[250px] ">
-              <img className=" relative z-[1] w-full" src={obj.image} alt="" />
-              <div className="text-white flex w-full">
-                <button className="bg-zinc-900 border border-white/20 w-1/2">
-                  GitRepo
-                </button>
-                <button className="bg-zinc-900 border border-white/20 w-1/2">
-                  LiveLink
-                </button>
-              </div>
+            <div className="text-white flex ">
+              <button className="bg-zinc-900 border border-white/20 w-1/2">
+                GitRepo
+              </button>
+              <button className="bg-zinc-900 border border-white/20 w-1/2">
+                LiveLink
+              </button>
             </div>
           </div>
-        ))}
-      </div>
+          <div className={`aboutProject  duration-300 flex w-full max-[1024px]:flex-col-reverse `}>
+            <p className="projectPara text-[#a19d99] w-1/2 max-[1024px]:w-full h-fit flex flex-wrap ">
+              {obj.description}
+            </p>
+            <div className="w-1/2 max-[1024px]:w-full">
+              <img className=" relative z-[1] w-full" src={obj.image} alt="" />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

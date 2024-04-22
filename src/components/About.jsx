@@ -19,12 +19,13 @@ function About() {
         scrub: true,
         // markers: true,
       },
+      y:0,
       opacity: 1,
       stagger: 0.01,
     });
   });
   return (
-    <div className="aboutsection w-full bg-black relative flex max-[1200px]:flex-col">
+    <div className="aboutSection w-full bg-black relative flex max-[1200px]:flex-col">
       <div className=" w-full text-white relative z-[2] border-t  px-5 py-10 overflow-hidden">
         <h2 className="text-2xl font-semibold py-5 flex items-center ">
           ABOUT{" "}
@@ -35,36 +36,76 @@ function About() {
 
         <div className="grid grid-cols-2 max-[1024px]:grid-cols-1  w-full">
           <div className="">
-            <div className="w-[300px] max-[500px]:w-[250px] flex relative">
-              <div className="text-8xl translate-x-[50px]">
+            <div className="group w-[300px] max-[500px]:w-[250px] flex relative">
+              <div className="text-8xl flex translate-x-[50px]">
                 <PiBracketsCurly />
               </div>
               <img
                 src="https://i.pinimg.com/originals/36/ea/42/36ea420bda238ecd1818b0f734dbb6f4.webp"
                 alt=""
               />
-              <div className="text-8xl flex items-end -translate-x-[50px]">
+              <div className="text-8xl flex items-end  -translate-x-[50px]">
                 <PiBracketsCurly />
               </div>
             </div>
           </div>
           <div className="grid ">
-            <p className="aboutPara py-2">
-              {`I'm passionate about designing websites and continuously learning
-            web development online. I can craft responsive and dynamic designs.
-            Currently seeking opportunities to grow and contribute my skills.`
+            <p className="aboutPara py-2 flex flex-wrap">
+              {`I'm passionate about designing websites and continuously learning web development online. I can craft responsive and dynamic designs. Currently seeking opportunities to grow and contribute my skills.`
                 .split("")
                 .map((letter, index) => (
-                  <span key={index} className="opacity-0">
-                    {letter}
-                  </span>
+                  letter == " " ? (
+                    <span key={`aboutSectionAboutPara${index}letter`} className="opacity-0 translate-y-[100%] ">
+                      &nbsp;
+                    </span>
+                  ) : (
+                    <span key={`aboutSectionAboutPara${index}letter`} className="opacity-0 translate-y-[100%] ">
+                      {letter}
+                    </span>
+                  )
                 ))}
             </p>
-            <button className=" border relative w-20 h-20 m-5  rounded-full flex items-center justify-center p-2 ">
-              <div className="absolute">
-                <div className="p-2 uppercase">resume</div>
+            <button
+              onMouseEnter={() => {
+                gsap.to(".btnChar3", {
+                  y: 0,
+                  stagger: 0.06,
+                });
+                gsap.to(".btnChar4", {
+                  y: '-100%',
+                  stagger: 0.06,
+                });
+              }}
+              onMouseLeave={()=>{
+                gsap.to(".btnChar3", {
+                  y: '100%',
+                  stagger: 0.06,
+                });
+                gsap.to(".btnChar4", {
+                  y: 0,
+                  stagger: 0.06,
+                });
+              }}
+              className="circleBtn border relative w-20 h-20 m-5  rounded-full flex items-center justify-center p-2 "
+            >
+              <div className="absolute  rounded-2xl ">
+                <div className="py-1.5 px-5  uppercase flex items-center  overflow-hidden">
+                  {"resume".split("").map((char, index) => (
+                    <div key={`aboutSectionCircleBtns${index}btnChars`} className="flex flex-col relative">
+                      <span
+                        className="btnChar3 translate-y-[100%]"
+                      >
+                        {char}
+                      </span>
+                      <span
+                        className="btnChar4 absolute translate-y-[0]"
+                      >
+                        {char}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="move border h-10 w-10 scale-[2] rounded-full  flex items-center justify-center"></div>
             </button>
           </div>
         </div>
@@ -93,7 +134,7 @@ function About() {
             },
           ].map((obj, index) => (
             <div
-              key={index}
+              key={`aboutSectionEductionBox${obj.fullDate}${index}`}
               className="w-full px-5 max-[600px]:px-0 flex items-center justify-center"
             >
               <div className="flex items-center w-full  relative">
@@ -103,12 +144,12 @@ function About() {
                   courseName={obj.courseName}
                   textPosition="end"
                 />
-                <div className="w-[88%] absolute bg-zinc-900 h-full z-[1] right-0"></div>
+                <div className="w-[88%] absolute bg-zinc-900/20 h-full z-[1] right-0"></div>
               </div>
             </div>
           ))}
         </div>
-        <Skills />
+        {/* <Skills /> */}
       </div>
     </div>
   );
