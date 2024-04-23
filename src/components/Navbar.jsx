@@ -1,5 +1,6 @@
 import React from "react";
 import Btn from "./smallComponents/Btn";
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="w-full h-fit bg-black box-border px-14">
@@ -9,9 +10,9 @@ function Navbar() {
             SSB.
           </span>
         </div>
-        <div className="navbtns text-zinc-100/60 flex gap-5">
+        <Link to="/projects" className="navbtns text-zinc-100/60 flex gap-5">
           <Btn name='view all projects'/>
-        </div>
+        </Link>
       </div>
     </div>
   );
