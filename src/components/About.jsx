@@ -26,6 +26,7 @@ function About() {
   });
   return (
     <div className="aboutSection w-full bg-black relative flex max-[1200px]:flex-col">
+      {/* <div className="absolute noise3 top-0 z-[99] h-[100vh] opacity-[0.07] pointer-events-none w-[100vw] bg-transparent"></div> */}
       <div className=" w-full text-white relative z-[2] border-t  px-5 py-10 overflow-hidden">
         <h2 className="text-2xl font-semibold py-5 flex items-center ">
           ABOUT{" "}
