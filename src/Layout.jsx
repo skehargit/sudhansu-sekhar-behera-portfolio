@@ -13,8 +13,9 @@ function Layout() {
     <>
       <Hero />
       <Featured />
-      <About />
-      <FeaturedProjects />
+      {/* <About /> */}
+      {/* <FeaturedProjects /> */}
+      
     </>
   );
 }

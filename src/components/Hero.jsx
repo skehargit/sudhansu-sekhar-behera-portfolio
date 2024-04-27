@@ -127,7 +127,7 @@ function Hero() {
       </div>
       <div className="relative z-[2] heroContentent h-[100vh]  w-full bg-[#e6e6e1]">
         <div className="w-full h-fit box-border px-14 bg-[#e6e6e1] ">
-          <div className="border-b border-[#3f3c38] py-5 flex items-center justify-between">
+          <div className="border-b border-[#3f3c38] py-3 flex items-center justify-between">
             <div className="logo flex items-center gap-2">
               <span className="text-[#3f3c38] font-semibold text-4xl tracking-wider">
                 SSB.
@@ -135,7 +135,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div className="flex flex-col justify-center items-center gap-10 max-[600px]:h-full">
           <h1
             onMouseEnter={() => {
               gsap.to(".char2", {
@@ -177,8 +177,8 @@ function Hero() {
                 alt=""
               />
             </div>
-            <div className="relative">
-              <h6 className="aboutPara max-w-[600px] font-semibold text-[#6a635c] text-right flex flex-wrap">
+            <div className="relative px-[5vw] flex flex-col justify-between">
+              <h6 className="aboutPara  max-w-[600px] font-semibold text-[#6a635c] text-right flex flex-wrap">
                 {`I'm passionate about designing websites and continuously learning web development online. Currently seeking opportunities to grow and contribute my skills.`
                   .split(" ")
                   .map((word, index) => (
@@ -193,7 +193,7 @@ function Hero() {
                     </span>
                   ))}
               </h6>
-              <div className="overflow-hidden absolute max-[900px]:static bottom-0 w-full">
+              <div className=" overflow-hidden  w-full">
                 <div className="aboutParaBtns translate-y-[100%] flex justify-between">
                   <div className="flex items-center justify-center gap-2">
                     <span>

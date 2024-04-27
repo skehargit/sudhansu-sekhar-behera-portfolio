@@ -12,7 +12,7 @@
         clip-path: circle(10% at 50% 50%);
     }
     .responsiveFontSize{
-        font-size: max(3.5rem,min(10vw + 1rem,18rem));
+        font-size: max(3rem,min(12vw + 1rem,18rem));
         /* color: #d7d7cf; */
     }
     .aboutPara,.projectPara,.projectsPara{
