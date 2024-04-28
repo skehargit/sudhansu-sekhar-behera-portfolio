@@ -7,12 +7,15 @@ import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import GrainyBackground from "./components/GrainyBackground";
 import Featured from "./components/Featured";
+import ElasticLine from "./components/smallComponents/ElasticLine";
 
 function Layout() {
   return (
     <>
       <Hero />
+      
       <Featured />
+      <ElasticLine/>
       {/* <About /> */}
       {/* <FeaturedProjects /> */}
       

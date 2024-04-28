@@ -6,11 +6,14 @@ gsap.registerPlugin(ScrollTrigger);
 import { motion, transform } from "framer-motion";
 import { IoLinkOutline } from "react-icons/io5";
 import { RiExternalLinkLine } from "react-icons/ri";
+import AnimatedCursor from "react-animated-cursor"
 // import { gsap } from "gsap";
 // import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 function Featured() {
+  const [clientX,setClientX]=useState(0);
+  const [clientY,setClientY]=useState(0);
   useEffect(() => {
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
@@ -33,8 +36,8 @@ function Featured() {
       },
       y: 0,
       stagger: 0.01,
-    })
-    
+    });
+
     for (let i = 0; i <= 2; i++) {
       gsap.to(`.projectChar${i}`, {
         scrollTrigger: {
@@ -56,10 +59,23 @@ function Featured() {
         },
         y: 0,
         stagger: 0.01,
-      })
+      });
     }
-    
-  });
+  },[]);
+  function elasticMouseLeaveHanler() {
+    gsap.to("#path", {
+      attr: { d: `M 10 80 Q 800 80 1590 80` },
+      duration: 3,
+      ease: "elastic.out(1,0.1)",
+    });
+  }
+  function elasticMouseMoveHanler(x, y) {
+    gsap.to("#path", {
+      attr: { d: `M 10 80 Q ${x} ${y} 1590 80` },
+      duration: 0.3,
+      ease: "power3.out",
+    });
+  }
   const pj = [
     {
       id: 1,
@@ -96,6 +112,35 @@ function Featured() {
   ];
   return (
     <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-3xl">
+      {/* <AnimatedCursor /> */}
+      {/* <AnimatedCursor
+      innerSize={10}
+      outerSize={10}
+      color='208,208,198'
+      outerAlpha={0.2}
+      innerScale={1}
+      outerScale={10}
+      outerStyle={{
+        border: '1px solid white'
+      }}
+      innerStyle={{
+        backgroundColor: 'rgba(208,208,198)'
+      }}
+      clickables={[
+        'a',
+        'input[type="text"]',
+        'input[type="email"]',
+        'input[type="number"]',
+        'input[type="submit"]',
+        'input[type="image"]',
+        'img',
+        'label[for]',
+        'select',
+        'textarea',
+        'button',
+        '.link',
+      ]}
+    /> */}
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
           {"My Projects /".split(" ").map((char, index) => (
@@ -132,22 +177,48 @@ function Featured() {
             </p>
           </div>
         </div>
+        <div className="w-[100vw] h-[160px] px-[5vw] flex items-center justify-center">
+          <svg
+            onMouseMove={(event) => {
+              // console.log(event.nativeEvent)
+              // console.log(event)
+              // console.log(event.nativeEvent.offsetX,event.nativeEvent.offsetY)
+              elasticMouseMoveHanler(
+                event.nativeEvent.offsetX,
+                event.nativeEvent.offsetY
+              );
+            }}
+            onMouseLeave={() => {
+              elasticMouseLeaveHanler();
+            }}
+            className=""
+            width="1600"
+            height="160"
+          >
+            <path
+              id="path"
+              d={`M 10 80 Q 800 80 1590 80`}
+              stroke="white"
+              fill="transparent"
+            />
+          </svg>
+        </div>
       </div>
       <div className="relative h-fit px-[5vw]">
         {pj.map((obj, index) => (
           <div
             key={`project${index}about`}
-            className={`border-t h-fit text-white sticky top-0 bg-black `}
+            className={`border-t border-white/20 h-fit text-white sticky top-0 bg-black `}
           >
             <div className="flex justify-between items-center py-4">
               <h3
                 className={`projectHeading${index} h-[6rem] anton leading-none text-[#d7d7cf] text-8xl max-[600px]:text-4xl h-fit overflow-hidden`}
               >
-                  <span
-                    className={`projectChar${index} inline-block translate-y-[100%]`}
-                  >
-                    {obj.title}
-                  </span>
+                <span
+                  className={`projectChar${index} inline-block translate-y-[100%]`}
+                >
+                  {obj.title}
+                </span>
               </h3>
               <div className="text-white flex gap-3">
                 <Link>
@@ -175,23 +246,29 @@ function Featured() {
             <div
               className={`aboutProject  duration-300 flex w-full max-[1024px]:flex-col-reverse gap-5 py-14 h-full max-[1024px]:h-fit `}
             >
-              <p className={`projectPara${index} text-[#d0d0c6] projectPara w-1/2 max-[1024px]:w-full  flex flex-wrap h-fit`}>
-              {obj.description
-                .split(" ")
-                .map((word,idx) => (
-                  <span key={`projectPara${idx}${index}`} className="flex overflow-hidden">
-                      <span className={`projectParaWord${index} font-medium translate-y-[110%]`}>
-                        {word}
-                      </span>
-                      <span className="">&nbsp;</span>
+              <p
+                className={`projectPara${index} text-[#d0d0c6] projectPara w-1/2 max-[1024px]:w-full  flex flex-wrap h-fit`}
+              >
+                {obj.description.split(" ").map((word, idx) => (
+                  <span
+                    key={`projectPara${idx}${index}`}
+                    className="flex overflow-hidden"
+                  >
+                    <span
+                      className={`projectParaWord${index} font-medium translate-y-[110%]`}
+                    >
+                      {word}
+                    </span>
+                    <span className="">&nbsp;</span>
                   </span>
                 ))}
-            </p>
+              </p>
               <div className="w-1/2 max-[1024px]:w-full ">
-                <div className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl">
+                <div  className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative">
+                  {/* <div className="viewHoverEffect absolute h-[5rem] w-[5rem] border z-[5] rounded-full bg-white"></div> */}
                   <div className="h-full w-full px-5 py-10 flex items-center justify-center backdrop-blur-sm ">
                     <img
-                      className=" relative z-[1] w-full"
+                      className="relative z-[1] w-full"
                       src={obj.image}
                       alt=""
                     />
@@ -204,7 +281,7 @@ function Featured() {
       </div>
       <div className="allProjectsHeadinggScroll w-[250vw]  border">
         <h3 className="allProjectsHeadingg text-[#d0d0c6]   text-[20vw] uppercase anton whitespace-nowrap">
-        Want to see more projects ?
+          Want to see more projects ?
         </h3>
       </div>
       <div className="relative h-screen overflow-hidden">
