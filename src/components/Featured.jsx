@@ -18,10 +18,11 @@ function Featured() {
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
         trigger: ".myProjectsh1",
+        scroller:'body',
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
-        // markers: true,
+        markers: true,
       },
       y: 0,
       // stagger: 0.1,
@@ -29,10 +30,11 @@ function Featured() {
     gsap.to(".featuredSectionParaSpan", {
       scrollTrigger: {
         trigger: ".projectsPara",
+        scroller:'body',
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
-        // markers: true,
+        markers: true,
       },
       y: 0,
       stagger: 0.01,
@@ -42,20 +44,22 @@ function Featured() {
       gsap.to(`.projectChar${i}`, {
         scrollTrigger: {
           trigger: `.projectHeading${i}`,
+          scroller:'body',
           start: "top 80%",
           end: "bottom 80%",
           scrub: true,
-          // markers:true
+          markers:true
         },
         y: 0,
       });
       gsap.to(`.projectParaWord${i}`, {
         scrollTrigger: {
           trigger: `.projectPara${i}`,
+          scroller:'body',
           start: "top 80%",
           end: "bottom 80%",
           scrub: true,
-          // markers: true,
+          markers: true,
         },
         y: 0,
         stagger: 0.01,
@@ -112,35 +116,6 @@ function Featured() {
   ];
   return (
     <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-3xl">
-      {/* <AnimatedCursor /> */}
-      {/* <AnimatedCursor
-      innerSize={10}
-      outerSize={10}
-      color='208,208,198'
-      outerAlpha={0.2}
-      innerScale={1}
-      outerScale={10}
-      outerStyle={{
-        border: '1px solid white'
-      }}
-      innerStyle={{
-        backgroundColor: 'rgba(208,208,198)'
-      }}
-      clickables={[
-        'a',
-        'input[type="text"]',
-        'input[type="email"]',
-        'input[type="number"]',
-        'input[type="submit"]',
-        'input[type="image"]',
-        'img',
-        'label[for]',
-        'select',
-        'textarea',
-        'button',
-        '.link',
-      ]}
-    /> */}
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
           {"My Projects /".split(" ").map((char, index) => (
