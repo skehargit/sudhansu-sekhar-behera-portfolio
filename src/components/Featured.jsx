@@ -22,7 +22,7 @@ function Featured() {
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
-        markers: true,
+        // markers: true,
       },
       y: 0,
       // stagger: 0.1,
@@ -34,7 +34,7 @@ function Featured() {
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
-        markers: true,
+        // markers: true,
       },
       y: 0,
       stagger: 0.01,
@@ -48,7 +48,7 @@ function Featured() {
           start: "top 80%",
           end: "bottom 80%",
           scrub: true,
-          markers:true
+          // markers:true
         },
         y: 0,
       });
@@ -59,7 +59,7 @@ function Featured() {
           start: "top 80%",
           end: "bottom 80%",
           scrub: true,
-          markers: true,
+          // markers: true,
         },
         y: 0,
         stagger: 0.01,
