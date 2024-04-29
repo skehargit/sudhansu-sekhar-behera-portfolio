@@ -254,11 +254,11 @@ function Featured() {
           </div>
         ))}
       </div>
-      <div className="allProjectsHeadinggScroll w-[250vw]  border">
+      {/* <div className="allProjectsHeadinggScroll w-[250vw]  border">
         <h3 className="allProjectsHeadingg text-[#d0d0c6]   text-[20vw] uppercase anton whitespace-nowrap">
           Want to see more projects ?
         </h3>
-      </div>
+      </div> */}
       <div className="relative h-screen overflow-hidden">
         <div className="flex flex-nowrap w-[200vw] relative ">
           <div className="w-[100vw] absolute h-[15vw] z-[5] flex justify-between">
