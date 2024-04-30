@@ -1,11 +1,7 @@
-import { useGSAP } from "@gsap/react";
+
 import React, { useEffect, useRef, useState } from "react";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { MdAlternateEmail } from "react-icons/md";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import LinesAnimate from "./smallComponents/LinesAnimate";
 gsap.registerPlugin(ScrollTrigger);
 function Hero() {
   const tl = useRef();

@@ -6,9 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 import { motion, transform } from "framer-motion";
 import { IoLinkOutline } from "react-icons/io5";
 import { RiExternalLinkLine } from "react-icons/ri";
-import AnimatedCursor from "react-animated-cursor"
-// import { gsap } from "gsap";
-// import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 function Featured() {
@@ -25,6 +22,7 @@ function Featured() {
         // markers: true,
       },
       y: 0,
+      duration:0.3,
       // stagger: 0.1,
     });
     gsap.to(".featuredSectionParaSpan", {
@@ -37,6 +35,7 @@ function Featured() {
         // markers: true,
       },
       y: 0,
+      duration:0.3,
       stagger: 0.01,
     });
 
@@ -47,10 +46,11 @@ function Featured() {
           scroller:'body',
           start: "top 80%",
           end: "bottom 80%",
-          scrub: true,
+          // scrub: true,
           // markers:true
         },
         y: 0,
+        duration:0.3,
       });
       gsap.to(`.projectParaWord${i}`, {
         scrollTrigger: {
@@ -58,10 +58,11 @@ function Featured() {
           scroller:'body',
           start: "top 80%",
           end: "bottom 80%",
-          scrub: true,
+          // scrub: true,
           // markers: true,
         },
         y: 0,
+        duration:0.3,
         stagger: 0.01,
       });
     }
@@ -79,6 +80,20 @@ function Featured() {
       duration: 0.3,
       ease: "power3.out",
     });
+  }
+  function cursorMoveHelndler(index){
+    gsap.to(`.cursorForindex${index}project`,{
+      opacity:1,
+      duration:0.3,
+      x:clientX-32,
+      y:clientY-32,
+    })
+  }
+  function cursorLeaveHelndler(index){
+    gsap.to(`.cursorForindex${index}project`,{
+      opacity:0,
+      duration:0.3,
+    })
   }
   const pj = [
     {
@@ -115,7 +130,8 @@ function Featured() {
     },
   ];
   return (
-    <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-3xl">
+    <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-t-3xl ">
+      
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
           {"My Projects /".split(" ").map((char, index) => (
@@ -183,7 +199,7 @@ function Featured() {
         {pj.map((obj, index) => (
           <div
             key={`project${index}about`}
-            className={`border-t border-white/20 h-fit text-white sticky top-0 bg-black `}
+            className={`border-t border-white/20 h-fit text-white  bg-black `}
           >
             <div className="flex justify-between items-center py-4">
               <h3
@@ -239,8 +255,17 @@ function Featured() {
                 ))}
               </p>
               <div className="w-1/2 max-[1024px]:w-full ">
-                <div  className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative">
-                  {/* <div className="viewHoverEffect absolute h-[5rem] w-[5rem] border z-[5] rounded-full bg-white"></div> */}
+                <div onMouseMove={(event)=>{
+                  setClientX(event.nativeEvent.offsetX);
+                  setClientY(event.nativeEvent.offsetY);
+                  cursorMoveHelndler(index);
+                }} onMouseLeave={()=>{
+                  setClientX(0);
+                  setClientY(0);
+                  cursorLeaveHelndler(index);
+                }} className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative ">
+                  <div  className={`cursorForindex${index}project opacity-0 absolute  border bg-white h-[4rem] w-[4rem] rounded-full z-[9] flex items-center justify-center`}><h6 className="view text-black font-semibold ">view</h6></div>
+                  <div className="overlayToPriventCursorGlitch absolute z-[10] h-full w-full"></div>
                   <div className="h-full w-full px-5 py-10 flex items-center justify-center backdrop-blur-sm ">
                     <img
                       className="relative z-[1] w-full"
@@ -259,17 +284,39 @@ function Featured() {
           Want to see more projects ?
         </h3>
       </div> */}
-      <div className="relative h-screen overflow-hidden">
+      <div className="relative h-fit overflow-hidden">
         <div className="flex flex-nowrap w-[200vw] relative ">
-          <div className="w-[100vw] absolute h-[15vw] z-[5] flex justify-between">
+          {/* <div className="w-[100vw] min-w-[1024px] max-[1024px]:hidden absolute h-[15vw] z-[5] flex justify-between">
             <div className=" w-[50%] bg-gradient-to-r from-black"></div>
             <div className=" w-[50%] bg-gradient-to-l from-black"></div>
-          </div>
+          </div> */}
+          <div onMouseMove={(event)=>{
+                  setClientX(event.nativeEvent.offsetX);
+                  setClientY(event.nativeEvent.offsetY);
+                  gsap.to(`.viewMoreProjectBtnMoving`,{
+                    opacity:1,
+                    duration:0.3,
+                    x:clientX-80,
+                    y:clientY-20,
+                  })
+                  gsap.to('.viewMoreProjectBtnFixed',{opacity:0})
+                }} onMouseLeave={()=>{
+                  setClientX(0);
+                  setClientY(0);
+                  gsap.to(`.viewMoreProjectBtnMoving`,{
+                    opacity:0,
+                    duration:0.3,
+                  })
+                  gsap.to('.viewMoreProjectBtnFixed',{opacity:1})
+                }} className=" absolute z-[10] text-white w-[100vw]  h-full  ">
+                  <div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div>
+                  <button className="viewMoreProjectBtnFixed absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button>
+                  <button className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button></div>
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
             transition={{ ease: "linear", repeat: Infinity, duration: 10 }}
-            className="flex  py-5 w-[100vw] relative z-[4]"
+            className="flex  py-5 w-[100vw] min-w-[1024px] relative z-[4]"
           >
             <img src={pj[0].image} className="w-[15%] mx-[0.7%]" alt="" />
             <img src={pj[1].image} className="w-[15%] mx-[0.7%]" alt="" />
@@ -282,7 +329,7 @@ function Featured() {
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
             transition={{ ease: "linear", repeat: Infinity, duration: 10 }}
-            className="flex   py-5 w-[100vw] relative z-[4]"
+            className="flex   py-5 w-[100vw] min-w-[1024px] relative z-[4]"
           >
             <img src={pj[0].image} className="w-[15%] mx-[0.7%]" alt="" />
             <img src={pj[1].image} className="w-[15%] mx-[0.7%]" alt="" />
