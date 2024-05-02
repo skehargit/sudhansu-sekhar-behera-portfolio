@@ -69,14 +69,14 @@ function Featured() {
   },[]);
   function elasticMouseLeaveHanler() {
     gsap.to("#path", {
-      attr: { d: `M 10 80 Q 800 80 1590 80` },
+      attr: { d: `M 10 80 Q 250 80 490 80` },
       duration: 3,
       ease: "elastic.out(1,0.1)",
     });
   }
   function elasticMouseMoveHanler(x, y) {
     gsap.to("#path", {
-      attr: { d: `M 10 80 Q ${x} ${y} 1590 80` },
+      attr: { d: `M 10 80 Q ${x} ${y} 490 80` },
       duration: 0.3,
       ease: "power3.out",
     });
@@ -168,7 +168,7 @@ function Featured() {
             </p>
           </div>
         </div>
-        <div className="w-[100vw] h-[160px] px-[5vw] flex items-center justify-center">
+        <div className="w-[100vw] h-[160px] px-[5vw] flex flex-col items-center justify-center overflow-hidden">
           <svg
             onMouseMove={(event) => {
               // console.log(event.nativeEvent)
@@ -182,13 +182,37 @@ function Featured() {
             onMouseLeave={() => {
               elasticMouseLeaveHanler();
             }}
-            className=""
-            width="1600"
+            className="overflow-x-hidden"
+            width="500"
             height="160"
           >
             <path
               id="path"
-              d={`M 10 80 Q 800 80 1590 80`}
+              d={`M 10 80 Q 250 80 490 80`}
+              stroke="white"
+              fill="transparent"
+            />
+          </svg>
+          <svg
+            onMouseMove={(event) => {
+              // console.log(event.nativeEvent)
+              // console.log(event)
+              // console.log(event.nativeEvent.offsetX,event.nativeEvent.offsetY)
+              elasticMouseMoveHanler(
+                event.nativeEvent.offsetX,
+                event.nativeEvent.offsetY
+              );
+            }}
+            onMouseLeave={() => {
+              elasticMouseLeaveHanler();
+            }}
+            className="absolute translate-y-5"
+            width="500"
+            height="160"
+          >
+            <path
+              id="path"
+              d={`M 10 80 Q 250 80 490 80`}
               stroke="white"
               fill="transparent"
             />

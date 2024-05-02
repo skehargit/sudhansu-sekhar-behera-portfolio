@@ -4,8 +4,8 @@ import { FaLinkedin } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 function Footer() {
   return (
-    <div className="w-full ">
-      <div className="py-10 w-full bg-black/95 text-white flex flex-col items-center justify-center">
+    <div className="w-full bg-black">
+      <div className="py-10 w-full bg-black text-white flex flex-col items-center justify-center">
         <h3 className="anton tracking-wider text-9xl text-white/10 font-semibold">
           SSB.
         </h3>
