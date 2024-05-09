@@ -8,9 +8,8 @@ import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import SingleProject from "./components/SingleProject.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 const locomotiveScroll = new LocomotiveScroll();
-import {Sugar} from 'react-preloaders';
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
+
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
@@ -22,6 +21,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Route>
       </Routes>
     </BrowserRouter>
-    <Sugar/>
   </React.StrictMode>
 );

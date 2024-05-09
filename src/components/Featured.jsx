@@ -9,33 +9,33 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 gsap.registerPlugin(ScrollTrigger);
 function Featured() {
-  const [clientX,setClientX]=useState(0);
-  const [clientY,setClientY]=useState(0);
+  const [clientX, setClientX] = useState(0);
+  const [clientY, setClientY] = useState(0);
   useEffect(() => {
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
         trigger: ".myProjectsh1",
-        scroller:'body',
+        scroller: "body",
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
         // markers: true,
       },
       y: 0,
-      duration:0.3,
+      duration: 0.3,
       // stagger: 0.1,
     });
     gsap.to(".featuredSectionParaSpan", {
       scrollTrigger: {
         trigger: ".projectsPara",
-        scroller:'body',
+        scroller: "body",
         start: "top 80%",
         end: "bottom 80%",
         // scrub: true,
         // markers: true,
       },
       y: 0,
-      duration:0.3,
+      duration: 0.3,
       stagger: 0.01,
     });
 
@@ -43,30 +43,30 @@ function Featured() {
       gsap.to(`.projectChar${i}`, {
         scrollTrigger: {
           trigger: `.projectHeading${i}`,
-          scroller:'body',
+          scroller: "body",
           start: "top 80%",
           end: "bottom 80%",
           // scrub: true,
           // markers:true
         },
         y: 0,
-        duration:0.3,
+        duration: 0.3,
       });
       gsap.to(`.projectParaWord${i}`, {
         scrollTrigger: {
           trigger: `.projectPara${i}`,
-          scroller:'body',
+          scroller: "body",
           start: "top 80%",
           end: "bottom 80%",
           // scrub: true,
           // markers: true,
         },
         y: 0,
-        duration:0.3,
+        duration: 0.3,
         stagger: 0.01,
       });
     }
-  },[]);
+  }, []);
   function elasticMouseLeaveHanler() {
     gsap.to("#path", {
       attr: { d: `M 10 80 Q 250 80 490 80` },
@@ -81,19 +81,19 @@ function Featured() {
       ease: "power3.out",
     });
   }
-  function cursorMoveHelndler(index){
-    gsap.to(`.cursorForindex${index}project`,{
-      opacity:1,
-      duration:0.3,
-      x:clientX-32,
-      y:clientY-32,
-    })
+  function cursorMoveHelndler(index) {
+    gsap.to(`.cursorForindex${index}project`, {
+      opacity: 1,
+      duration: 0.3,
+      x: clientX - 32,
+      y: clientY - 32,
+    });
   }
-  function cursorLeaveHelndler(index){
-    gsap.to(`.cursorForindex${index}project`,{
-      opacity:0,
-      duration:0.3,
-    })
+  function cursorLeaveHelndler(index) {
+    gsap.to(`.cursorForindex${index}project`, {
+      opacity: 0,
+      duration: 0.3,
+    });
   }
   const pj = [
     {
@@ -131,7 +131,6 @@ function Featured() {
   ];
   return (
     <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-t-3xl ">
-      
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
           {"My Projects /".split(" ").map((char, index) => (
@@ -171,9 +170,6 @@ function Featured() {
         <div className="w-[100vw] h-[160px] px-[5vw] flex flex-col items-center justify-center overflow-hidden">
           <svg
             onMouseMove={(event) => {
-              // console.log(event.nativeEvent)
-              // console.log(event)
-              // console.log(event.nativeEvent.offsetX,event.nativeEvent.offsetY)
               elasticMouseMoveHanler(
                 event.nativeEvent.offsetX,
                 event.nativeEvent.offsetY
@@ -195,9 +191,6 @@ function Featured() {
           </svg>
           <svg
             onMouseMove={(event) => {
-              // console.log(event.nativeEvent)
-              // console.log(event)
-              // console.log(event.nativeEvent.offsetX,event.nativeEvent.offsetY)
               elasticMouseMoveHanler(
                 event.nativeEvent.offsetX,
                 event.nativeEvent.offsetY
@@ -279,16 +272,24 @@ function Featured() {
                 ))}
               </p>
               <div className="w-1/2 max-[1024px]:w-full ">
-                <div onMouseMove={(event)=>{
-                  setClientX(event.nativeEvent.offsetX);
-                  setClientY(event.nativeEvent.offsetY);
-                  cursorMoveHelndler(index);
-                }} onMouseLeave={()=>{
-                  setClientX(0);
-                  setClientY(0);
-                  cursorLeaveHelndler(index);
-                }} className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative ">
-                  <div  className={`cursorForindex${index}project opacity-0 absolute  border bg-white h-[4rem] w-[4rem] rounded-full z-[9] flex items-center justify-center`}><h6 className="view text-black font-semibold ">view</h6></div>
+                <div
+                  onMouseMove={(event) => {
+                    setClientX(event.nativeEvent.offsetX);
+                    setClientY(event.nativeEvent.offsetY);
+                    cursorMoveHelndler(index);
+                  }}
+                  onMouseLeave={() => {
+                    setClientX(0);
+                    setClientY(0);
+                    cursorLeaveHelndler(index);
+                  }}
+                  className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative "
+                >
+                  <div
+                    className={`cursorForindex${index}project opacity-0 absolute  border bg-white h-[4rem] w-[4rem] rounded-full z-[9] flex items-center justify-center`}
+                  >
+                    <h6 className="view text-black font-semibold ">view</h6>
+                  </div>
                   <div className="overlayToPriventCursorGlitch absolute z-[10] h-full w-full"></div>
                   <div className="h-full w-full px-5 py-10 flex items-center justify-center backdrop-blur-sm ">
                     <img
@@ -303,39 +304,39 @@ function Featured() {
           </div>
         ))}
       </div>
-      {/* <div className="allProjectsHeadinggScroll w-[250vw]  border">
-        <h3 className="allProjectsHeadingg text-[#d0d0c6]   text-[20vw] uppercase anton whitespace-nowrap">
-          Want to see more projects ?
-        </h3>
-      </div> */}
       <div className="relative h-fit overflow-hidden">
         <div className="flex flex-nowrap w-[200vw] relative ">
-          {/* <div className="w-[100vw] min-w-[1024px] max-[1024px]:hidden absolute h-[15vw] z-[5] flex justify-between">
-            <div className=" w-[50%] bg-gradient-to-r from-black"></div>
-            <div className=" w-[50%] bg-gradient-to-l from-black"></div>
-          </div> */}
-          <div onMouseMove={(event)=>{
-                  setClientX(event.nativeEvent.offsetX);
-                  setClientY(event.nativeEvent.offsetY);
-                  gsap.to(`.viewMoreProjectBtnMoving`,{
-                    opacity:1,
-                    duration:0.3,
-                    x:clientX-80,
-                    y:clientY-20,
-                  })
-                  gsap.to('.viewMoreProjectBtnFixed',{opacity:0})
-                }} onMouseLeave={()=>{
-                  setClientX(0);
-                  setClientY(0);
-                  gsap.to(`.viewMoreProjectBtnMoving`,{
-                    opacity:0,
-                    duration:0.3,
-                  })
-                  gsap.to('.viewMoreProjectBtnFixed',{opacity:1})
-                }} className=" absolute z-[10] text-white w-[100vw]  h-full  ">
-                  <div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div>
-                  <button className="viewMoreProjectBtnFixed absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button>
-                  <button className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button></div>
+          <div
+            onMouseMove={(event) => {
+              setClientX(event.nativeEvent.offsetX);
+              setClientY(event.nativeEvent.offsetY);
+              gsap.to(`.viewMoreProjectBtnMoving`, {
+                opacity: 1,
+                duration: 0.3,
+                x: clientX - 80,
+                y: clientY - 20,
+              });
+              gsap.to(".viewMoreProjectBtnFixed", { opacity: 0 });
+            }}
+            onMouseLeave={() => {
+              setClientX(0);
+              setClientY(0);
+              gsap.to(`.viewMoreProjectBtnMoving`, {
+                opacity: 0,
+                duration: 0.3,
+              });
+              gsap.to(".viewMoreProjectBtnFixed", { opacity: 1 });
+            }}
+            className=" absolute z-[10] text-white w-[100vw]  h-full  "
+          >
+            <div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div>
+            <button className="viewMoreProjectBtnFixed absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">
+              More Projects
+            </button>
+            <button className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">
+              More Projects
+            </button>
+          </div>
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
