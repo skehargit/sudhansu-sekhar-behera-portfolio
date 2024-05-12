@@ -12,9 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 function Featured() {
   const [clientX,setClientX]=useState(0);
   const [clientY,setClientY]=useState(0);
-  const {contextSafe}=useGSAP();
-  useEffect(()=>textanimations)
-  const textanimations=contextSafe(()=>{
+  // const {contextSafe}=useGSAP();
+  // (()=>textanimations)
+  useEffect(()=>{
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
         trigger: ".myProjectsh1",

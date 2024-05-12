@@ -10,9 +10,9 @@ import LinesAnimate from "./smallComponents/LinesAnimate";
 gsap.registerPlugin(ScrollTrigger);
 function Hero() {
   const tl = useRef();
-  const { contextSafe }=useGSAP();
-  useEffect(()=>loading);
-  const loading=contextSafe(() => {
+  // const { contextSafe }=useGSAP();
+  // useEffect(()=>loading);
+  useEffect(() => {
     gsap.to('.heroSection',{
       scrollTrigger:{
         trigger:'.featuredSection',
