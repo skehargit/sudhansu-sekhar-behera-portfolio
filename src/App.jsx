@@ -10,6 +10,7 @@ function App() {
   return (
     <div className='relative'>
     {/* <Navbar/> */}
+    <GrainyBackground/>
     <Outlet/>
     <Footer/>
     </div>
