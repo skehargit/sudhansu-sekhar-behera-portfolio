@@ -25,5 +25,8 @@
     .circleLine{
         background-image: repeating-linear-gradient(135deg, rgba(172, 176, 216,0.08) 0px, rgba(172, 176, 216,0.08) 1px,transparent 1px, transparent 9px),repeating-linear-gradient(45deg, rgba(172, 176, 216,0.08) 0px, rgba(172, 176, 216,0.08) 1px,transparent 1px, transparent 9px),linear-gradient(90deg, rgb(5,26,155),rgb(24,62,255));
     }
+    .footer{
+        background-color: black;
+    }
     
 }
