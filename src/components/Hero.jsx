@@ -75,7 +75,7 @@ function Hero() {
     <div className="heroSection min-h-[100vh] h-fit w-full sticky top-0 bg-[#e6e6e1] overflow-hidden ">
       <div className="heroSectionLoading z-[5] absolute h-[100vh] w-full bg-[#e6e6e1]">
         <div className="heroSectionLoadingPolygon  h-[100vh] w-full bg-[#3f3c38] flex items-center justify-center flex-col">
-          <h2 className="heroSectionLoadingHeadings scale-1 text-[100%] text-white uppercase leading-none flex relative overflow-hidden hover:cursor-cell">
+          <h2 className="heroSectionLoadingHeadings scale-1 text-[140%] text-white uppercase leading-none flex relative overflow-hidden hover:cursor-cell">
             {"Welcome to".split("").map((char, index) =>
               char == " " ? (
                 <span
@@ -94,7 +94,7 @@ function Hero() {
               )
             )}
           </h2>
-          <h2 className="heroSectionLoadingHeadings scale-1 text-[100%] text-white uppercase leading-none flex relative overflow-hidden hover:cursor-cell">
+          <h2 className="heroSectionLoadingHeadings scale-1 text-[140%] text-white uppercase leading-none flex relative overflow-hidden hover:cursor-cell">
             {"my Portfolio".split("").map((char, index) =>
               char == " " ? (
                 <span
