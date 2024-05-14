@@ -7,7 +7,10 @@ import { MdAlternateEmail } from "react-icons/md";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import LinesAnimate from "./smallComponents/LinesAnimate";
+import { useLocation, useParams } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
+// const param=useParams();
+
 function Hero() {
   const tl = useRef();
   // const { contextSafe }=useGSAP();
@@ -116,15 +119,6 @@ function Hero() {
         </div>
       </div>
       <div className="relative z-[2] heroContentent h-[100vh]  w-full bg-[#e6e6e1]">
-        <div className="w-full h-fit box-border px-14 bg-[#e6e6e1] ">
-          <div className="border-b border-[#3f3c38] py-3 flex items-center justify-between">
-            <div className="logo flex items-center gap-2">
-              <span className="text-[#3f3c38] font-semibold text-4xl tracking-wider">
-                SSB.
-              </span>
-            </div>
-          </div>
-        </div>
         <div className="flex flex-col justify-center items-center gap-10 max-[600px]:h-full">
           <h1
             onMouseEnter={() => {

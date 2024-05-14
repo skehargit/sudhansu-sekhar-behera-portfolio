@@ -223,7 +223,7 @@ function Featured() {
         {pj.map((obj, index) => (
           <div
             key={`project${index}about`}
-            className={`border-t border-white/20 h-fit text-white  bg-black `}
+            className={`border-t border-white/20 h-fit text-white  `}
           >
             <div className="flex justify-between items-center py-4">
               <h3

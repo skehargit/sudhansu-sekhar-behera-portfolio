@@ -1,20 +1,21 @@
 import React from "react";
 // import Btn from "./smallComponents/Btn";
 // import { Link } from "react-router-dom";
-function Navbar() {
+function Navbar({location}) {
+  console.log(location.pathname)
+  // props.location.pathname
+  // var loc=location
   return (
-    <div className="w-full h-fit bg-black box-border px-14">
-      <div className="border-b border-zinc-100/30 py-5 flex items-center justify-between">
-        <div className="logo flex items-center gap-2">
-          <span className="text-white font-semibold text-4xl tracking-wider">
-            SSB.
-          </span>
+    <div className="w-full h-fit box-border px-14 bg-[#e6e6e1] ">
+          <div className="border-b border-[#3f3c38] py-3 flex items-center justify-between">
+            <div className="logo flex items-end gap-2">
+              <span className="text-[#3f3c38] font-semibold text-4xl tracking-wider">
+                SSB.
+              </span>
+              <span className="text-[#3f3c38]">{location.pathname}</span>
+            </div>
+          </div>
         </div>
-        {/* <Link to="/projects" className="navbtns text-zinc-100/60 flex gap-5">
-          <Btn name='view all projects'/>
-        </Link> */}
-      </div>
-    </div>
   );
 }
 export default Navbar;
