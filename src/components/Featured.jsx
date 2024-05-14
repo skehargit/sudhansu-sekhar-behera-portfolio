@@ -12,6 +12,9 @@ gsap.registerPlugin(ScrollTrigger);
 function Featured() {
   const [clientX,setClientX]=useState(0);
   const [clientY,setClientY]=useState(0);
+  const [size,setSize]=useState(500);
+  console.log(window.innerWidth)
+  
   // const {contextSafe}=useGSAP();
   // (()=>textanimations)
   useEffect(()=>{
@@ -133,11 +136,11 @@ function Featured() {
     },
   ];
   return (
-    <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-t-3xl ">
+    <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-t-3xl overflow-x-hidden">
       
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
-          {"My Projects /".split(" ").map((char, index) => (
+          {"Projects /".split(" ").map((char, index) => (
             <span
               key={`myProjectsh1Span${index}`}
               className="myProjectsh1Span translate-y-[100%]"
@@ -149,7 +152,7 @@ function Featured() {
         <div className="w-full justify-end flex p-5">
           <div className=" flex w-[600px]">
             <p className="projectsPara text-[#d0d0c6]  flex flex-wrap">
-              {`I have created my projects using Html, css, JavaScript,   TailwindCss, react, express, mongoDB, nodejs, gsap,`
+              {`I have created projects using Html, css, JavaScript,   TailwindCss, react, express, mongoDB, nodejs, gsap,`
                 .split(" ")
                 .map((word, index) => (
                   <span
@@ -325,9 +328,10 @@ function Featured() {
                   })
                   gsap.to('.viewMoreProjectBtnFixed',{opacity:1})
                 }} className=" absolute z-[10] text-white w-[100vw]  h-full  ">
-                  <div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div>
+                  <Link to='projects'><div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div></Link>
                   <button className="viewMoreProjectBtnFixed absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button>
-                  <button className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button></div>
+                  
+                  <button  className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">More Projects</button></div>
           <motion.div
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}

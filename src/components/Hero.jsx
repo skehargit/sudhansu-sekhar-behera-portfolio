@@ -35,7 +35,7 @@ function Hero() {
       })
       .to(".heroSectionLoadingPolygon", {
         scale: 10,
-        duration: 0.5,
+        duration: 1,
       })
       .to(".heroSectionLoading", {
         y: "-250%",
@@ -129,17 +129,17 @@ function Hero() {
           <h1
             onMouseEnter={() => {
               gsap.to(".char2", {
-                y: 100,
-                stagger: 0.07,
+                y: '100%',
+                stagger: 0.05,
               });
             }}
             onMouseLeave={() => {
               gsap.to(".char2", {
                 y: 0,
-                stagger: 0.07,
+                stagger: 0.05,
               });
             }}
-            className="responsiveFontSize uppercase w-fit leading-none flex overflow-hidden  justify-center text-[#3f3c38]"
+            className="responsiveFontSize uppercase w-fit leading-none flex overflow-hidden  justify-center text-[#3f3c38] max-[500px]:pointer-events-none"
           >
             {"I'm sudhansu".split("").map((char, index) =>
               char == " " ? (
