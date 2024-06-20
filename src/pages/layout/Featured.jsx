@@ -8,16 +8,13 @@ import { IoLinkOutline } from "react-icons/io5";
 import { RiExternalLinkLine } from "react-icons/ri";
 import { useGSAP } from "@gsap/react";
 import { StoreContext } from "../../context/StoreContext";
-
+import { MdHtml } from "react-icons/md";
+import Stacks from "../../components/Stacks";
 gsap.registerPlugin(ScrollTrigger);
 function Featured() {
   const [clientX, setClientX] = useState(0);
   const [clientY, setClientY] = useState(0);
-  const {featuredProjects,projects}=useContext(StoreContext);
-  // console.log(window.innerWidth);
-
-  // const {contextSafe}=useGSAP();
-  // (()=>textanimations)
+  const {featuredProjects,projectlist}=useContext(StoreContext);
   useEffect(() => {
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
@@ -25,12 +22,9 @@ function Featured() {
         scroller: "body",
         start: "top 80%",
         end: "bottom 80%",
-        // scrub: true,
-        // markers: true,
       },
       y: 0,
       duration: 0.3,
-      // stagger: 0.1,
     });
     gsap.to(".featuredSectionParaSpan", {
       scrollTrigger: {
@@ -185,7 +179,7 @@ function Featured() {
       <div className="relative h-fit px-[5vw]">
         {featuredProjects.map((obj, index) => {
           return (
-            <div key={index} className={`border-t border-white/20 h-fit text-white  `}>
+            <div key={index} className={` border-t border-white/20 h-fit text-white  `}>
               <div className="flex justify-between items-center py-4">
                 <h3
                   className={`projectHeading${index} h-[6rem] anton leading-none text-[#d7d7cf] text-8xl max-[600px]:text-4xl h-fit overflow-hidden`}
@@ -197,7 +191,7 @@ function Featured() {
                   </span>
                 </h3>
                 <div className="text-white flex gap-3">
-                  <Link>
+                  <Link to={`${obj.github}`}>
                     <button className="relative ">
                       <span className="absolute z-[3] bg-zinc-900   hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
                         Git
@@ -207,7 +201,7 @@ function Featured() {
                       </span>
                     </button>
                   </Link>
-                  <Link>
+                  <Link to={`${obj.live}`}>
                     <button className="relative ">
                       <span className="absolute z-[3] bg-zinc-900 hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
                         Live
@@ -222,10 +216,10 @@ function Featured() {
               <div
                 className={`aboutProject  duration-300 flex w-full max-[1024px]:flex-col-reverse gap-5 py-14 h-full max-[1024px]:h-fit `}
               >
-                <p
-                  className={`projectPara${index} text-[#d0d0c6] projectPara w-1/2 max-[1024px]:w-full  flex flex-wrap h-fit`}
+                <div
+                  className={`projectPara${index} text-[#d0d0c6] projectPara w-1/2 max-[1024px]:w-full  text-lg flex flex-col h-fit`}
                 >
-                  {obj.description.split(" ").map((word,idx) => {
+                  <p className="flex flex-wrap">{obj.description.split(" ").map((word,idx) => {
                     return <span key={idx} className="flex overflow-hidden">
                       <span
                         className={`projectParaWord${index} font-medium translate-y-[110%]`}
@@ -234,9 +228,12 @@ function Featured() {
                       </span>
                       <span className="">&nbsp;</span>
                     </span>;
-                  })}
-                </p>
-                <div className="w-1/2 max-[1024px]:w-full ">
+                  })}</p>
+                  <div className="">
+                  <Stacks props={obj.stacks.split(',')}></Stacks>
+                  </div>
+                </div>
+                <div className=" w-1/2 max-[1024px]:w-full ">
                   <div
                     onMouseMove={(event) => {
                       setClientX(event.nativeEvent.offsetX);
@@ -255,7 +252,7 @@ function Featured() {
                     >
                       <h6 className="view text-black font-semibold ">view</h6>
                     </div>
-                    <div className="overlayToPriventCursorGlitch absolute z-[10] h-full w-full"></div>
+                    <Link to={`${obj.live}`}><div className="overlayToPriventCursorGlitch absolute z-[10] h-full w-full"></div></Link>
                     <div className="h-full w-full px-5 py-10 flex items-center justify-center">
                       <img
                         className="relative z-[1] w-full"
@@ -316,28 +313,11 @@ function Featured() {
             transition={{ ease: "linear", repeat: Infinity, duration: 10 }}
             className="flex  py-5 w-[100vw] min-w-[1024px] relative z-[4]"
           >
-            <img src={projects[0].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[1].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[2].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[3].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[4].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[5].image} className="w-[15%] mx-[0.7%]" alt="" />
-            
+            {projectlist.map((item,index)=>{
+              return <img key={index} src={item.image} className="w-[15%] mx-[0.7%]" alt="" />
+            })}
           </motion.div>
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-100%" }}
-            transition={{ ease: "linear", repeat: Infinity, duration: 10 }}
-            className="flex  py-5 w-[100vw] min-w-[1024px] relative z-[4]"
-          >
-            <img src={projects[6].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[7].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[8].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[9].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[10].image} className="w-[15%] mx-[0.7%]" alt="" />
-            <img src={projects[11].image} className="w-[15%] mx-[0.7%]" alt="" />
-            
-          </motion.div>
+          
         </div>
       </div>
     </div>
