@@ -3,7 +3,7 @@ import axios from "axios";
 export const StoreContext=createContext(null);
 
 const StoreContextProvider=(props)=>{
-  const url = "http://localhost:4000/api/portfolio";
+  const url = "https://sekharportfoliobackend.onrender.com/api/portfolio";
   const [projectlist,setProjectlist]= useState([]);
   const [featuredProjects,setFeaturedProjects] = useState([]);
   const [loading,setLoading]=useState(false)
