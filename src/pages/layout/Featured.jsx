@@ -10,11 +10,12 @@ import { useGSAP } from "@gsap/react";
 import { StoreContext } from "../../context/StoreContext";
 import { MdHtml } from "react-icons/md";
 import Stacks from "../../components/Stacks";
+import Loading from '../../components/Loading';
 gsap.registerPlugin(ScrollTrigger);
 function Featured() {
   const [clientX, setClientX] = useState(0);
   const [clientY, setClientY] = useState(0);
-  const {featuredProjects,projectlist}=useContext(StoreContext);
+  const {featuredProjects,projectlist,loading}=useContext(StoreContext);
   useEffect(() => {
     gsap.to(".myProjectsh1Span", {
       scrollTrigger: {
@@ -176,7 +177,7 @@ function Featured() {
           </svg>
         </div>
       </div>
-      <div className="relative h-fit px-[5vw]">
+      {loading?<Loading></Loading>:<div className="relative h-fit px-[5vw]">
         {featuredProjects.map((obj, index) => {
           return (
             <div key={index} className={` border-t border-white/20 h-fit text-white  `}>
@@ -266,7 +267,8 @@ function Featured() {
             </div>
           );
         })}
-      </div>
+      </div>}
+      
       <div className="relative h-fit overflow-hidden">
         <div className="flex flex-nowrap w-[200vw] relative ">
           <div className="w-[100vw] min-w-[1024px] max-[1024px]:hidden absolute h-[15vw] z-[5] flex justify-between">

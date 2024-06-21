@@ -3,7 +3,7 @@ import { StoreContext } from '../../context/StoreContext';
 import Loading from '../../components/Loading';
 
 function MyProjects() {
-  const {projectlist,loading,setLoading}=useContext(StoreContext);
+  const {projectlist,loading}=useContext(StoreContext);
   useEffect(()=>{
     window.scrollTo({top:0});
   })

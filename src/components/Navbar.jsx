@@ -17,9 +17,9 @@ function Navbar({location}) {
     <div className="w-full h-fit box-border absolute  z-[999]  px-14 bg-[#e6e6e1] ">
           <div className="border-b border-[#3f3c38] py-2 flex items-center justify-between">
             <div className="logo flex items-end gap-2">
-              <span className="text-[#3f3c38] font-semibold text-2xl tracking-wider">
+              <Link to={"/"}><span className="text-[#3f3c38] font-semibold text-2xl tracking-wider">
                 SSB.
-              </span>
+              </span></Link>
               <span className="text-[#3f3c38] text-sm">{location.pathname}</span>
             </div>
             <div className=""  onClick={hide}>
