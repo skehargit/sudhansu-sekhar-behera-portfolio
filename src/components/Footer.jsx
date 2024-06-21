@@ -2,6 +2,7 @@ import React from "react";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div className="footer w-full  relative overflow-x-hidden">
