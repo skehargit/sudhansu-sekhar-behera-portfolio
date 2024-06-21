@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams,Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 // const param=useParams();
 
@@ -181,6 +181,7 @@ function Hero() {
                     </span>
                     <span className="font-semibold text-[#6a635c]">Odisha</span>
                   </div>
+                  <Link to={"https://drive.google.com/file/d/1QydsUUEKTLx6U0y-h2wktXdl25NntnDG/view?usp=drive_link"}>
                   <button
                     onMouseEnter={(event) => {
                       gsap.to(".heroSectionBtnChar1", {
@@ -220,6 +221,7 @@ function Hero() {
                       )
                     })}
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>
