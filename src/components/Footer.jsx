@@ -13,15 +13,20 @@ function Footer() {
         <div className="w-full mt-5 flex items-center justify-center gap-3">
           <hr className="w-[10%]" />
           <div className="flex gap-2">
+            <Link to={"https://github.com/skehargit"}>
             <div className="p-2 border rounded-full  backdrop-blur border-white/20">
               <FaGithub />
             </div>
+            </Link>
+            <Link to={"https://www.linkedin.com/in/sudhansu-sekhar-behera/"}>
             <div className="p-2 border rounded-full  backdrop-blur border-white/20">
               <FaLinkedin />
-            </div>
+            </div></Link>
+            <a href="mailto:sudhansusekharweb@gmail.com">
             <div className="p-2 border rounded-full  backdrop-blur border-white/20">
               <MdAlternateEmail />
             </div>
+            </a>
           </div>
           <hr className="w-[10%]" />
         </div>
