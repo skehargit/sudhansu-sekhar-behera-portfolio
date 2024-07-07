@@ -181,7 +181,7 @@ function Hero() {
                     </span>
                     <span className="font-semibold text-[#6a635c]">Odisha</span>
                   </div>
-                  <Link to={"https://drive.google.com/file/d/1QydsUUEKTLx6U0y-h2wktXdl25NntnDG/view?usp=drive_link"}>
+                  <Link to={"https://drive.google.com/file/d/19tGEVbZNhdprIzI_RXI5v6HY3AwrbAyR/view?usp=drive_link"}>
                   <button
                     onMouseEnter={(event) => {
                       gsap.to(".heroSectionBtnChar1", {
