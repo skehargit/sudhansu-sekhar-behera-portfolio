@@ -1,73 +1,60 @@
 import React, { useContext, useEffect, useState } from "react";
 import gsap from "https://esm.sh/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
 import { Link } from "react-router-dom";
-gsap.registerPlugin(ScrollTrigger);
-import { motion, transform } from "framer-motion";
-import { IoLinkOutline } from "react-icons/io5";
-import { RiExternalLinkLine } from "react-icons/ri";
-import { useGSAP } from "@gsap/react";
-import { StoreContext } from "../../context/StoreContext";
-import { MdHtml } from "react-icons/md";
+
 import Stacks from "../../components/Stacks";
-import Loading from '../../components/Loading';
-gsap.registerPlugin(ScrollTrigger);
+import LinkButton from "../../components/smallComponents/LinkButton";
+import FProject from "../../components/FProject";
+
 function Featured() {
-  const [clientX, setClientX] = useState(0);
-  const [clientY, setClientY] = useState(0);
-  const {featuredProjects,projectlist,loading}=useContext(StoreContext);
-  useEffect(() => {
-    gsap.to(".myProjectsh1Span", {
-      scrollTrigger: {
-        trigger: ".myProjectsh1",
-        scroller: "body",
-        start: "top 80%",
-        end: "bottom 80%",
-      },
-      y: 0,
-      duration: 0.3,
-    });
-    gsap.to(".featuredSectionParaSpan", {
-      scrollTrigger: {
-        trigger: ".projectsPara",
-        scroller: "body",
-        start: "top 80%",
-        end: "bottom 80%",
-        // scrub: true,
-        // markers: true,
-      },
-      y: 0,
-      duration: 0.3,
-      stagger: 0.01,
-    });
-    for (let i = 0; i <= 2; i++) {
-      gsap.to(`.projectChar${i}`, {
-        scrollTrigger: {
-          trigger: `.projectHeading${i}`,
-          scroller: "body",
-          start: "top 80%",
-          end: "bottom 80%",
-          // scrub: true,
-          // markers:true
-        },
-        y: 0,
-        duration: 0.3,
-      });
-      gsap.to(`.projectParaWord${i}`, {
-        scrollTrigger: {
-          trigger: `.projectPara${i}`,
-          scroller: "body",
-          start: "top 80%",
-          end: "bottom 80%",
-          // scrub: true,
-          // markers: true,
-        },
-        y: 0,
-        duration: 0.3,
-        stagger: 0.01,
-      });
-    }
-  });
+  
+  const featuredProjects = [
+    {
+      description:
+        "WarPoint is a competitive gaming tournament website where players can join, participate, and track their progress in matches. The platform features detailed match listings with key information like entry fees, prizes, and match types. Users can view results, join active matches, and follow leaderboards based on total winnings. WarPoint also offers secure user registration, payment management, and match filtering for a smooth tournament experience.",
+      github: "",
+      image:
+        "https://res.cloudinary.com/db7pikwo4/image/upload/v1728278783/h76rmetcyr3xoxvpyqtd.webp",
+      live: "https://warpoint.in",
+      stacks:
+        "html,css,javascript,gsap,tailwind,react,mongodb,express,node,jwt,bcrypt,",
+      title: "WarPoint",
+    },
+    // {
+    //   description:
+    //     "It is a modern, responsive music player designed for seamless audio enjoyment across all devices.Enjoy precise control over your music with features like play, pause, skip, shuffle, and repeat.",
+    //   github: "https://github.com/skehargit/music-player",
+    //   image:
+    //     "https://i.pinimg.com/originals/9c/18/cb/9c18cb6e04ccf304843db65052f2f828.jpg",
+    //   live: "https://skehargit.github.io/music-player/",
+    //   stacks: "html,css,javascript,gsap,tailwind",
+    //   title: "music player",
+    // },
+    {
+      description:
+        "Studynotion is an innovative education platform designed for students, instructors, and admin. It features authentication system with encrypted passwords to ensure security and some usefull. Key features include a shopping cart, personalized dashboard, user profiles, course creation and uploading, and rating and review functionality.",
+      github: "https://github.com/skehargit/StudyNotion",
+      image:
+        "https://i.pinimg.com/originals/f8/61/fb/f861fb24e090050cb33b69eaa0c29268.jpg",
+      live: "https://study-notion-eight-pied.vercel.app/",
+      stacks:
+        "html,css,javascript,react,node,mongodb,express,jwt,bcrypt,tailwind",
+      title: "Studynotion",
+    },
+    {
+      description:
+        "Chili is a modern restaurant web application featuring a responsive design for optimal viewing on all devices. It includes authentication and authorization using JSON Web Tokens (JWT) and encrypted passwords for enhanced security. Key features include cart functionality for easy order management.",
+      github: "https://github.com/skehargit/Chili",
+      image:
+        "https://i.pinimg.com/originals/fb/10/61/fb1061cc2d75f576ec3ed9051bdc9440.jpg",
+      live: "https://chili-eta.vercel.app/",
+      stacks:
+        "html,css,javascript,react,node,mongodb,express,jwt,bcrypt,tailwind",
+      title: "Chili",
+    },
+  ];
+  
 
   function elasticMouseLeaveHanler() {
     gsap.to("#path", {
@@ -83,28 +70,15 @@ function Featured() {
       ease: "power3.out",
     });
   }
-  function cursorMoveHelndler(index) {
-    gsap.to(`.cursorForindex${index}project`, {
-      opacity: 1,
-      duration: 0.3,
-      x: clientX - 32,
-      y: clientY - 32,
-    });
-  }
-  function cursorLeaveHelndler(index) {
-    gsap.to(`.cursorForindex${index}project`, {
-      opacity: 0,
-      duration: 0.3,
-    });
-  }
   
+
   return (
     <div className="featuredSection min-h-screen h-fit bg-black w-full relative rounded-t-3xl overflow-x-hidden">
       <div className=" flex flex-col items-center">
         <h3 className="myProjectsh1 text-[#d0d0c6]  text-8xl max-[600px]:text-5xl px-[5vw] pt-[10vh] uppercase anton flex overflow-hidden w-full">
-          {"Projects /".split(" ").map((char,index) => {
+          {"Projects /".split(" ").map((char, index) => {
             return (
-              <span key={index}  className="myProjectsh1Span translate-y-[100%]">
+              <span key={index} className="myProjectsh1Span translate-y-[100%]">
                 {char}
               </span>
             );
@@ -115,12 +89,12 @@ function Featured() {
             <p className="projectsPara text-[#d0d0c6]  flex flex-wrap">
               {`I have created projects using Html, css, JavaScript,   TailwindCss, react, express, mongoDB, nodejs, gsap,`
                 .split(" ")
-                .map((word,index) => {
+                .map((word, index) => {
                   return (
                     <span key={index} className="overflow-hidden">
                       <span className="flex">
                         <span className="featuredSectionParaSpan font-medium translate-y-[100%]">
-                          {word.split("").map((char,index) => {
+                          {word.split("").map((char, index) => {
                             return <span key={index}>{char}</span>;
                           })}
                         </span>
@@ -177,151 +151,15 @@ function Featured() {
           </svg>
         </div>
       </div>
-      {loading?<Loading></Loading>:<div className="relative h-fit px-[5vw]">
+      <div className="relative h-fit px-[5vw]">
         {featuredProjects.map((obj, index) => {
+          console.log(obj);
           return (
-            <div key={index} className={` border-t border-white/20 h-fit text-white  `}>
-              <div className="flex justify-between items-center py-4">
-                <h3
-                  className={`projectHeading${index} h-[6rem] anton leading-none text-[#d7d7cf] text-8xl max-[600px]:text-4xl h-fit overflow-hidden`}
-                >
-                  <span
-                    className={`projectChar${index} inline-block translate-y-[100%]`}
-                  >
-                    {obj.title}
-                  </span>
-                </h3>
-                <div className="text-white flex gap-3">
-                  <Link to={`${obj.github}`}>
-                    <button className="relative ">
-                      <span className="absolute z-[3] bg-zinc-900   hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
-                        Git
-                      </span>
-                      <span className="relative z-[4]  hover:opacity-0 bg-black  hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
-                        <IoLinkOutline />
-                      </span>
-                    </button>
-                  </Link>
-                  <Link to={`${obj.live}`}>
-                    <button className="relative ">
-                      <span className="absolute z-[3] bg-zinc-900 hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
-                        Live
-                      </span>
-                      <span className="relative z-[4] hover:opacity-0 bg-black  hover:scale-[1.2] duration-300 border border-white/10 text-base w-[3rem] h-[3rem]  rounded-full flex items-center justify-center">
-                        <RiExternalLinkLine />
-                      </span>
-                    </button>
-                  </Link>
-                </div>
-              </div>
-              <div
-                className={`aboutProject  duration-300 flex w-full max-[1024px]:flex-col-reverse gap-5 py-14 h-full max-[1024px]:h-fit `}
-              >
-                <div
-                  className={`projectPara${index} text-[#d0d0c6] projectPara w-1/2 max-[1024px]:w-full  text-lg flex flex-col h-fit`}
-                >
-                  <p className="flex flex-wrap">{obj.description.split(" ").map((word,idx) => {
-                    return <span key={idx} className="flex overflow-hidden">
-                      <span
-                        className={`projectParaWord${index} font-medium translate-y-[110%]`}
-                      >
-                        {word}
-                      </span>
-                      <span className="">&nbsp;</span>
-                    </span>;
-                  })}</p>
-                  <div className="">
-                  <Stacks props={obj.stacks.split(',')}></Stacks>
-                  </div>
-                </div>
-                <div className=" w-1/2 max-[1024px]:w-full ">
-                  <div
-                    onMouseMove={(event) => {
-                      setClientX(event.nativeEvent.offsetX);
-                      setClientY(event.nativeEvent.offsetY);
-                      cursorMoveHelndler(index);
-                    }}
-                    onMouseLeave={() => {
-                      setClientX(0);
-                      setClientY(0);
-                      cursorLeaveHelndler(index);
-                    }}
-                    className="bg-[url(https://images.pexels.com/photos/2923034/pexels-photo-2923034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)] bg-cover bg-center rounded-2xl relative "
-                  >
-                    <div
-                      className={`cursorForindex${index}project opacity-0 absolute  border bg-white h-[4rem] w-[4rem] rounded-full z-[9] flex items-center justify-center`}
-                    >
-                      <h6 className="view text-black font-semibold ">view</h6>
-                    </div>
-                    <Link to={`${obj.live}`}><div className="overlayToPriventCursorGlitch absolute z-[10] h-full w-full"></div></Link>
-                    <div className="h-full w-full px-5 py-10 flex items-center justify-center">
-                      <img
-                        className="relative z-[1] w-full"
-                        src={obj.image}
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FProject key={index} index={index} obj={obj}/>
           );
         })}
-      </div>}
-      
-      <div className="relative h-fit overflow-hidden">
-        <div className="flex flex-nowrap w-[200vw] relative ">
-          <div className="w-[100vw] min-w-[1024px] max-[1024px]:hidden absolute h-[15vw] z-[5] flex justify-between">
-            <div className=" w-[50%] bg-gradient-to-r from-black"></div>
-            <div className=" w-[50%] bg-gradient-to-l from-black"></div>
-          </div>
-          <div
-            onMouseMove={(event) => {
-              setClientX(event.nativeEvent.offsetX);
-              setClientY(event.nativeEvent.offsetY);
-              gsap.to(`.viewMoreProjectBtnMoving`, {
-                opacity: 1,
-                duration: 0.3,
-                x: clientX - 80,
-                y: clientY - 20,
-              });
-              gsap.to(".viewMoreProjectBtnFixed", { opacity: 0 });
-            }}
-            onMouseLeave={() => {
-              setClientX(0);
-              setClientY(0);
-              gsap.to(`.viewMoreProjectBtnMoving`, {
-                opacity: 0,
-                duration: 0.3,
-              });
-              gsap.to(".viewMoreProjectBtnFixed", { opacity: 1 });
-            }}
-            className=" absolute z-[10] text-white w-[100vw]  h-full  "
-          >
-            <Link to="projects">
-              <div className="overlayonscrollingimgs absolute h-full w-full z-[9]"></div>
-            </Link>
-            <button className="viewMoreProjectBtnFixed absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">
-              More Projects
-            </button>
-
-            <button className="viewMoreProjectBtnMoving opacity-0 absolute text-black border-2 border-green-500 bg-white  h-[2.5rem] w-[10rem] rounded-full font-semibold uppercase">
-              More Projects
-            </button>
-          </div>
-          <motion.div
-            initial={{ x: 0 }}
-            animate={{ x: "-100%" }}
-            transition={{ ease: "linear", repeat: Infinity, duration: 10 }}
-            className="flex  py-5 w-[100vw] min-w-[1024px] relative z-[4]"
-          >
-            {projectlist.map((item,index)=>{
-              return <img key={index} src={item.image} className="w-[15%] mx-[0.7%]" alt="" />
-            })}
-          </motion.div>
-          
-        </div>
       </div>
+
     </div>
   );
 }

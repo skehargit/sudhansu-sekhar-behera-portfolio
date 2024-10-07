@@ -14,6 +14,7 @@ const StoreContextProvider=(props)=>{
       const resfeaturedProjects = await axios.get(`${url}/featuredprojectslist`);
       setProjectlist(resprojects.data.data);
       setFeaturedProjects(resfeaturedProjects.data.data);
+      
       setLoading(false);
     } catch (error) {
       console.log("Error while fething data",error);

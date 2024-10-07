@@ -8,9 +8,7 @@
         font-weight: 400;
         font-style: normal;
     }
-    .heroSectionLoadingPolygon{
-        clip-path: circle(10% at 50% 50%);
-    }
+    
     .responsiveFontSize{
         font-size: max(3rem,min(12vw + 1rem,18rem));
         /* color: #d7d7cf; */

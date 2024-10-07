@@ -3,14 +3,13 @@ import { useGSAP } from "@gsap/react";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "https://esm.sh/gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { useLocation, useParams,Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
+import { useLocation, useParams, Link } from "react-router-dom";
+
 // const param=useParams();
 
 function Hero() {
-  const tl = useRef();
-  // const { contextSafe }=useGSAP();
-  // useEffect(()=>loading);
+  
   useEffect(() => {
     gsap.to(".heroSection", {
       scrollTrigger: {
@@ -22,57 +21,40 @@ function Hero() {
       },
       opacity: 0,
     });
-    tl.current = gsap
-      .timeline()
-      .to(".heroSectionLoadingH2One", {
+    const tl = gsap.timeline();
+    tl.to(
+      ".char2",
+      {
         y: 0,
-        stagger: 0.03,
-      })
-      .to(".heroSectionLoadingH2Two", {
+        stagger: 0.05,
+      },
+      "start"
+    );
+    tl.to(
+      ".heroSectionProfileImg",
+      {
         y: 0,
-        stagger: 0.03,
-      })
-      .to(".heroSectionLoadingPolygon", {
-        scale: 10,
-        duration: 1,
-      })
-      .to(".heroSectionLoading", {
-        y: "-250%",
-        duration: 1,
-      })
-      .to(
-        ".char2",
-        {
-          y: 0,
-          stagger: 0.05,
-        },
-        "start"
-      )
-      .to(
-        ".heroSectionProfileImg",
-        {
-          y: 0,
-        },
-        "start"
-      )
-      .to(
-        ".word",
-        {
-          y: 0,
-        },
-        "start"
-      )
-      .to(
-        ".aboutParaBtns",
-        {
-          y: 0,
-        },
-        "start"
-      );
+      },
+      "start"
+    );
+    tl.to(
+      ".word",
+      {
+        y: 0,
+      },
+      "start"
+    );
+    tl.to(
+      ".aboutParaBtns",
+      {
+        y: 0,
+      },
+      "start"
+    );
   });
   return (
     <div className="heroSection min-h-[100vh] h-fit w-full bg-[#e6e6e1] overflow-x-hidden ">
-      <div className="heroSectionLoading z-[5] absolute h-[100vh] w-full bg-[#e6e6e1] overflow-hidden">
+      {/* <div className="heroSectionLoading z-[5] absolute h-[100vh] w-full bg-[#e6e6e1] overflow-hidden">
         <div className="heroSectionLoadingPolygon  h-[100vh] w-full bg-[#3f3c38] flex items-center justify-center flex-col">
           <h2 className="heroSectionLoadingHeadings scale-1 text-[140%] text-white uppercase leading-none flex relative overflow-hidden ">
             {"Welcome to".split("").map((char, index) => {
@@ -115,32 +97,21 @@ function Hero() {
             )}
           </h2>
         </div>
-      </div>
+      </div> */}
       <div className="relative z-[2] heroContentent h-[100vh]  w-full bg-[#e6e6e1]">
         <div className="flex flex-col justify-center items-center gap-10 h-full">
-          <h1
-            
-            className="responsiveFontSize uppercase w-fit leading-none flex overflow-hidden  justify-center text-[#3f3c38] max-[500px]:pointer-events-none"
-          >
-            {"I'm sudhansu".split("").map((char, index) =>
-              {
-                return char == " " ? (
-                  <span
-                    key={index}
-                    className="char2 anton translate-y-[100%] "
-                  >
-                    &nbsp;
-                  </span>
-                ) : (
-                  <span
-                    key={index}
-                    className="char2 anton translate-y-[100%]"
-                  >
-                    {char}
-                  </span>
-                )
-              }
-            )}
+          <h1 className="responsiveFontSize uppercase w-fit leading-none flex overflow-hidden  justify-center text-[#3f3c38] max-[500px]:pointer-events-none">
+            {"I'm sudhansu".split("").map((char, index) => {
+              return char == " " ? (
+                <span key={index} className="char2 anton translate-y-[100%] ">
+                  &nbsp;
+                </span>
+              ) : (
+                <span key={index} className="char2 anton translate-y-[100%]">
+                  {char}
+                </span>
+              );
+            })}
           </h1>
           <div className="w-full h-fit flex max-[900px]:flex-col max-[900px]:items-center gap-5 justify-center">
             <div className="overflow-hidden">
@@ -156,16 +127,13 @@ function Hero() {
                   .split(" ")
                   .map((word, index) => {
                     return (
-                      <span
-                        key={index}
-                        className="words overflow-hidden "
-                      >
+                      <span key={index} className="words overflow-hidden ">
                         <div className="word translate-y-[100%]">
                           <span className="">{word}</span>
                           <span>&nbsp;</span>
                         </div>
                       </span>
-                    )
+                    );
                   })}
               </h6>
               <div className=" overflow-hidden  w-full">
@@ -181,46 +149,47 @@ function Hero() {
                     </span>
                     <span className="font-semibold text-[#6a635c]">Odisha</span>
                   </div>
-                  <Link to={"https://drive.google.com/file/d/19tGEVbZNhdprIzI_RXI5v6HY3AwrbAyR/view?usp=drive_link"}>
-                  <button
-                    onMouseEnter={(event) => {
-                      gsap.to(".heroSectionBtnChar1", {
-                        y: 0,
-                        stagger: 0.06,
-                      });
-                      gsap.to(".heroSectionBtnChar2", {
-                        y: "-100%",
-                        stagger: 0.06,
-                      });
-                    }}
-                    onMouseLeave={() => {
-                      gsap.to(".heroSectionBtnChar1", {
-                        y: "100%",
-                        stagger: 0.06,
-                      });
-                      gsap.to(".heroSectionBtnChar2", {
-                        y: 0,
-                        stagger: 0.06,
-                      });
-                    }}
-                    className="h-8 px-5  uppercase flex items-center  overflow-hidden border border-zinc-900 rounded-full font-semibold text-[#3f3c38]"
+                  <Link
+                    to={
+                      "https://drive.google.com/file/d/11MlcKUnH4fIpyQWYJPXwPLBl-gN5K1RT/view?usp=drive_link"
+                    }
                   >
-                    {"resume".split("").map((char, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="flex flex-col relative"
-                        >
-                          <span className="heroSectionBtnChar1 translate-y-[100%]">
-                            {char}
-                          </span>
-                          <span className="heroSectionBtnChar2 absolute translate-y-[0]">
-                            {char}
-                          </span>
-                        </div>
-                      )
-                    })}
-                  </button>
+                    <button
+                      onMouseEnter={(event) => {
+                        gsap.to(".heroSectionBtnChar1", {
+                          y: 0,
+                          stagger: 0.06,
+                        });
+                        gsap.to(".heroSectionBtnChar2", {
+                          y: "-100%",
+                          stagger: 0.06,
+                        });
+                      }}
+                      onMouseLeave={() => {
+                        gsap.to(".heroSectionBtnChar1", {
+                          y: "100%",
+                          stagger: 0.06,
+                        });
+                        gsap.to(".heroSectionBtnChar2", {
+                          y: 0,
+                          stagger: 0.06,
+                        });
+                      }}
+                      className="h-8 px-5  uppercase flex items-center  overflow-hidden border border-zinc-900 rounded-full font-semibold text-[#3f3c38]"
+                    >
+                      {"resume".split("").map((char, index) => {
+                        return (
+                          <div key={index} className="flex flex-col relative">
+                            <span className="heroSectionBtnChar1 translate-y-[100%]">
+                              {char}
+                            </span>
+                            <span className="heroSectionBtnChar2 absolute translate-y-[0]">
+                              {char}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </button>
                   </Link>
                 </div>
               </div>
