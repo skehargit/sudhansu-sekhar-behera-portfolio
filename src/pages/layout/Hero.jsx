@@ -9,7 +9,7 @@ import { useLocation, useParams, Link } from "react-router-dom";
 // const param=useParams();
 
 function Hero() {
-  
+  const [imgLoading,setImgLoading]=useState(true);
   useEffect(() => {
     gsap.to(".heroSection", {
       scrollTrigger: {
@@ -114,12 +114,14 @@ function Hero() {
             })}
           </h1>
           <div className="w-full h-fit flex max-[900px]:flex-col max-[900px]:items-center gap-5 justify-center">
-            <div className="overflow-hidden">
+            <div className=" relative">
               <img
-                className="heroSectionProfileImg w-[250px] rounded-2xl translate-y-[100%] "
+                className="heroSectionProfileImg relative z-[1] w-[250px] rounded-2xl translate-y-[100%] "
                 src="https://i.pinimg.com/originals/36/ea/42/36ea420bda238ecd1818b0f734dbb6f4.webp"
                 alt=""
+                onLoad={()=>setImgLoading(false)}
               />
+              <div className={`heroSectionProfileImg h-full  absolute top-0 border-red-500   ${imgLoading?'animate-pulse z-[2] opacity-1':'-z-[1] opacity-0'} bg-zinc-900 w-[250px] rounded-2xl translate-y-[100%]`}></div>
             </div>
             <div className="relative px-[5vw] flex flex-col justify-between">
               <h6 className="aboutPara  max-w-[600px] font-semibold text-[#6a635c] text-right flex flex-wrap">
