@@ -5,7 +5,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 function Footer() {
   return (
-    <div className="footer w-full  relative overflow-x-hidden">
+    <div className="footer w-full bg-[#0c0c0c]  relative overflow-x-hidden">
       <div className="py-10 rounded-t-3xl w-full bg-zinc-900  text-white flex flex-col items-center justify-center">
         <h3 className="anton  tracking-wider text-9xl text-white/50 font-semibold">
           SSB.

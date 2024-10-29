@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function ErrorPage() {
   return (
-    <div className='w-full h-[80vh] bg-black flex items-center justify-center'>
+    <div className='w-full min-h-screen bg-black flex items-center justify-center'>
         <div className='border-r h-1/2 w-1/2 text-white flex flex-col items-center justify-center' >
             <h1 className='responsiveFontSize leading-none anton'>404</h1>
             <h2 className='text-5xl anton uppercase'>page not found </h2>

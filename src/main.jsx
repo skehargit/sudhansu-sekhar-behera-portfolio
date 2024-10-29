@@ -8,8 +8,9 @@ import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import SingleProject from "./pages/singleProject/SingleProject.jsx";
 import MyProjects from "./pages/projects/MyProjects.jsx";
 import ErrorPage from "./pages/Error/ErrorPage.jsx";
-import Layout from "./pages/layout/Layout.jsx";
+import Layout from "./pages/Home/Layout.jsx";
 import StoreContextProvider from "./context/StoreContext.jsx";
+import About from "./pages/About/About.jsx";
 const locomotiveScroll = new LocomotiveScroll();
 ReactDOM.createRoot(document.getElementById("root")).render(
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path='' element={<Layout/>}></Route>
             <Route path="projects" element={<MyProjects/>}></Route>
             <Route path="project/:projectId" element={<SingleProject/>}></Route>
+            <Route path='about' element={<About/>}></Route>
             <Route path='*' element={<ErrorPage/>}></Route>
           </Route>
         </Routes>
