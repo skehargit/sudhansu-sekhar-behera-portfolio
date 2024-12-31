@@ -88,7 +88,7 @@ function Hero() {
 
               {/* Resume Button */}
               <Link
-                to="https://drive.google.com/file/d/11I6P2VKk1Gnf14lzLiQO_V7rguni9Fcb/view?usp=sharing"
+                to="https://drive.google.com/file/d/1GLLb9OxcvdgSbIno7bZVtfCt7bJpCfkp/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
