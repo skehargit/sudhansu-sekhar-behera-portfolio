@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
@@ -8,7 +8,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 function Hero() {
   const [imgLoading, setImgLoading] = useState(true);
   const paragraphRef = useRef(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const characters = paragraphRef.current.children;
     gsap.fromTo(
@@ -16,21 +16,36 @@ function Hero() {
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 0.3,
-        stagger: 0.02,
+        duration: 0.3, 
+        stagger: 0.03,
+        ease: "power2.out",
       }
     );
   }, []);
+  
 
   return (
     <div className="min-h-screen h-fit w-full bg-[#0c0c0c] overflow-x-hidden flex items-center justify-center px-8 py-16">
       <div className="w-full max-w-7xl flex flex-col md:flex-row items-center gap-10">
         <div className="w-full md:w-1/2 text-center md:text-left flex flex-col items-center md:items-start gap-6">
-          <h1 className="marcellus-regular text-5xl font-bold text-white">
-            I'm Sudhansu sekhar behera
-          </h1>
+          <div className="text-white">
+            <ul className="mylink font-bold marcellus-regular flex flex-wrap">
+              <li className="pr-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                I'm
+              </li>
+              <li className="pr-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                Sudhansu
+              </li>
+              <li className="pr-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                Sekhar
+              </li>
+              <li className="pr-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+                Behera
+              </li>
+            </ul>
+          </div>
 
-          <div className="text-lg font-medium text-gray-400">
+          <div className="text-md sm:text-lg md:text-xl font-medium text-gray-400">
             <Typewriter
               options={{
                 strings: [
@@ -49,7 +64,7 @@ function Hero() {
 
           <p
             ref={paragraphRef}
-            className="text-lg font-medium text-gray-400 max-w-md leading-relaxed"
+            className="text-sm sm:text-md md:text-lg font-medium text-gray-400 max-w-md leading-relaxed"
           >
             {`I love building websites that are responsive and animated. I have worked on many projects using both frontend and backend skills. I enjoy learning new things to create great online experiences.`
               .split("")
@@ -67,46 +82,21 @@ function Hero() {
               />
               <span>Odisha, India</span>
             </div>
-            <div className="flex gap-4">
-              {/* About Button */}
-              <Link to="/about">
-                <motion.button
-                  className="h-10 px-6 text-lg font-semibold text-white border border-gray-600 hover:bg-gray-700 "
-                  initial={{ scale: 1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    transition: {
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 12,
-                    },
-                  }}
-                >
+            <div className="flex gap-4 font-bold">
+              <ul className="mylink text-gray-400">
+                <li className="pr-4 py-1" onClick={() => navigate("/about")}>
                   About Me
-                </motion.button>
-              </Link>
-
-              {/* Resume Button */}
-              <Link
-                to="https://drive.google.com/file/d/1GLLb9OxcvdgSbIno7bZVtfCt7bJpCfkp/view?usp=drive_link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <motion.button
-                  className="h-10 px-6 text-lg font-semibold text-white border border-gray-600 hover:bg-gray-700 "
-                  initial={{ scale: 1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    transition: {
-                      type: "spring",
-                      stiffness: 200,
-                      damping: 12,
-                    },
-                  }}
-                >
-                  Resume
-                </motion.button>
-              </Link>
+                </li>
+                <li className="pr-4 py-1">
+                  <Link
+                    to="https://drive.google.com/file/d/1GLLb9OxcvdgSbIno7bZVtfCt7bJpCfkp/view?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Resume
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -116,10 +106,16 @@ function Hero() {
             </p>
             <div className="border-b border-white"></div>
             <div className="flex gap-2">
-              <Link to={"https://github.com/skehargit"} className="hover:scale-[1.4] duration-300">
+              <Link
+                to={"https://github.com/skehargit"}
+                className="hover:scale-[1.4] duration-300"
+              >
                 <FaGithub />
               </Link>
-              <Link to={"https://www.linkedin.com/in/sudhansu-sekhar-behera/"} className="hover:scale-[1.4] duration-300">
+              <Link
+                to={"https://www.linkedin.com/in/sudhansu-sekhar-behera/"}
+                className="hover:scale-[1.4] duration-300"
+              >
                 <FaLinkedin />
               </Link>
             </div>

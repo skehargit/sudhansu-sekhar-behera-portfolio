@@ -16,17 +16,11 @@ const Featured = () => {
         scrollTrigger: {
           trigger: selector,
           start: "top 80%",
-          end: "top 60%",
-          // Remove scrub for smoother animation
-          // The animation will play once when the element enters the viewport
+          end: "top 60%"
         },
       });
     };
-
-    // Animate project words with a faster stagger
     animateElement(".project-words span", { opacity: 0 }, { opacity: 1, stagger: 0.001 });
-
-    // Animate the project title
     animateElement(".projectTitle", { opacity: 0, y: -50 }, { opacity: 1, y: 0 });
   }, []);
 

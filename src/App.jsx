@@ -9,7 +9,7 @@ import { useState } from "react";
 function App() {
   return (
     <div className="relative bg-[#0c0c0c]">
-      <Navbar l />
+      <Navbar />
       <GrainyBackground />
       <Outlet />
       <Footer />

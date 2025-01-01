@@ -19,16 +19,14 @@ const FProject = ({ index, obj }) => {
         scroller: "body",
         start: "top 80%",
         end: "bottom 80%",
+        scrub: true,
       },
     });
-  
-    // Animate heading characters
     timeline.to(`.projectChar${index}`, {
       y: 0,
-      duration: 0.3,
+      duration: 0.5,  // Increased duration for smoother transition
+      ease: "power2.out",  // Smooth easing for the scroll effect
     });
-  
-    // Animate each character in the paragraph
     const paragraphText = document.querySelector(`.projectPara${index} p`);
     if (paragraphText) {
       const chars = paragraphText.textContent.split('').map((char) => `<span class="projectParaChar${index}">${char}</span>`);
@@ -40,8 +38,9 @@ const FProject = ({ index, obj }) => {
           { opacity: 0 },
           {
             opacity: 1,
-            duration: 0.05,
-            delay: charIndex * 0.005,
+            duration: 0.1, // Smoother fade-in effect with a slight delay for each character
+            delay: charIndex * 0.008, // Slightly faster stagger
+            ease: "power2.out",  // Smooth easing for each character
             scrollTrigger: {
               trigger: `.projectPara${index}`,
               scroller: "body",
@@ -51,17 +50,16 @@ const FProject = ({ index, obj }) => {
           });
       });
     }
-  
-    // Animate opacity for the paragraph as a whole
     gsap.to(`.projectPara${index}`, {
       opacity: 1,
+      duration: 0.4,  // Adjusted duration for smoother fade-in
+      ease: "power2.out",  // Smoother fade-in for the paragraph
       scrollTrigger: {
         trigger: `.projectPara${index}`,
         scroller: "body",
         start: "top 80%",
         end: "bottom 80%",
       },
-      duration: 0.3,
     });
   }, [index]);
 
@@ -71,6 +69,7 @@ const FProject = ({ index, obj }) => {
       duration: 0.3,
       x: clientX - 32,
       y: clientY - 32,
+      ease: "power2.inOut",  // Smooth easing for cursor movement
     });
   };
 
@@ -78,6 +77,7 @@ const FProject = ({ index, obj }) => {
     gsap.to(`.cursorForindex${index}project`, {
       opacity: 0,
       duration: 0.3,
+      ease: "power2.inOut",  // Smooth fading out
     });
   };
 
@@ -85,7 +85,7 @@ const FProject = ({ index, obj }) => {
     <div key={index} className="border-t border-white/20 h-fit text-white">
       <div className="flex justify-between items-center py-4">
         <h3
-          className={`projectHeading${index} h-[6rem] anton leading-none text-[#d7d7cf] text-8xl max-[600px]:text-4xl h-fit overflow-hidden`}
+          className={`projectHeading${index} anton leading-none text-[#d7d7cf] text-8xl max-[600px]:text-4xl h-fit overflow-hidden`}
         >
           <span
             className={`projectChar${index} marcellus-regular font-semibold inline-block translate-y-[100%]`}
@@ -112,7 +112,7 @@ const FProject = ({ index, obj }) => {
             {obj.description.split(" ").map((word, idx) => (
               <span key={idx} className={`projectParaWord${index} font-medium`}>
                 {word}
-                {idx < obj.description.split(" ").length - 1 && <span>&nbsp;</span>} {/* Add space between words */}
+                {idx < obj.description.split(" ").length - 1 && <span>&nbsp;</span>}
               </span>
             ))}
           </p>
