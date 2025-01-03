@@ -24,36 +24,42 @@ const FProject = ({ index, obj }) => {
     });
     timeline.to(`.projectChar${index}`, {
       y: 0,
-      duration: 0.5,  // Increased duration for smoother transition
-      ease: "power2.out",  // Smooth easing for the scroll effect
+      duration: 0.5,
+      ease: "power2.out",
     });
     const paragraphText = document.querySelector(`.projectPara${index} p`);
     if (paragraphText) {
-      const chars = paragraphText.textContent.split('').map((char) => `<span class="projectParaChar${index}">${char}</span>`);
-      paragraphText.innerHTML = chars.join('');
-  
-      const charElements = document.querySelectorAll(`.projectParaChar${index}`);
+      const chars = paragraphText.textContent
+        .split("")
+        .map((char) => `<span class="projectParaChar${index}">${char}</span>`);
+      paragraphText.innerHTML = chars.join("");
+
+      const charElements = document.querySelectorAll(
+        `.projectParaChar${index}`
+      );
       charElements.forEach((char, charIndex) => {
-        gsap.fromTo(char,
+        gsap.fromTo(
+          char,
           { opacity: 0 },
           {
             opacity: 1,
-            duration: 0.1, // Smoother fade-in effect with a slight delay for each character
-            delay: charIndex * 0.008, // Slightly faster stagger
-            ease: "power2.out",  // Smooth easing for each character
+            duration: 0.1,
+            delay: charIndex * 0.008,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: `.projectPara${index}`,
               scroller: "body",
               start: "top 80%",
               end: "bottom 80%",
             },
-          });
+          }
+        );
       });
     }
     gsap.to(`.projectPara${index}`, {
       opacity: 1,
-      duration: 0.4,  // Adjusted duration for smoother fade-in
-      ease: "power2.out",  // Smoother fade-in for the paragraph
+      duration: 0.4,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: `.projectPara${index}`,
         scroller: "body",
@@ -63,21 +69,25 @@ const FProject = ({ index, obj }) => {
     });
   }, [index]);
 
-  const cursorMoveHandler = () => {
+  const cursorMoveHandler = (event) => {
+    const { offsetX, offsetY } = event.nativeEvent;
+
     gsap.to(`.cursorForindex${index}project`, {
       opacity: 1,
-      duration: 0.3,
-      x: clientX - 32,
-      y: clientY - 32,
-      ease: "power2.inOut",  // Smooth easing for cursor movement
+      x: offsetX - 32,
+      y: offsetY - 32,
+      duration: 0.2,
+      ease: "power1.out",
+      overwrite: true,
     });
   };
 
   const cursorLeaveHandler = () => {
     gsap.to(`.cursorForindex${index}project`, {
       opacity: 0,
-      duration: 0.3,
-      ease: "power2.inOut",  // Smooth fading out
+      duration: 0.4,
+      ease: "power1.in",
+      overwrite: true,
     });
   };
 
@@ -107,12 +117,16 @@ const FProject = ({ index, obj }) => {
         </div>
       </div>
       <div className="aboutProject duration-300 flex w-full max-[1024px]:flex-col-reverse gap-5 py-14 h-full max-[1024px]:h-fit">
-        <div className={`projectPara${index} text-[#d0d0c6] w-1/2 max-[1024px]:w-full text-md flex flex-col h-fit opacity-0`}>
+        <div
+          className={`projectPara${index} text-[#d0d0c6] w-1/2 max-[1024px]:w-full text-md flex flex-col h-fit opacity-0`}
+        >
           <p className="flex flex-wrap">
             {obj.description.split(" ").map((word, idx) => (
               <span key={idx} className={`projectParaWord${index} font-medium`}>
                 {word}
-                {idx < obj.description.split(" ").length - 1 && <span>&nbsp;</span>}
+                {idx < obj.description.split(" ").length - 1 && (
+                  <span>&nbsp;</span>
+                )}
               </span>
             ))}
           </p>
@@ -125,7 +139,7 @@ const FProject = ({ index, obj }) => {
             onMouseMove={(event) => {
               setClientX(event.nativeEvent.offsetX);
               setClientY(event.nativeEvent.offsetY);
-              cursorMoveHandler();
+              cursorMoveHandler(event);
             }}
             onMouseLeave={cursorLeaveHandler}
             className={`${
